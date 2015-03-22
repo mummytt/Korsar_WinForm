@@ -44,35 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accueil.cs">
+    <Compile Include="IHM_Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accueil.Designer.cs">
-      <DependentUpon>Accueil.cs</DependentUpon>
+    <Compile Include="IHM_Accueil.Designer.cs">
+      <DependentUpon>IHM_Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inscription.cs">
+    <Compile Include="IHM_InscriptionJoueur.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inscription.Designer.cs">
-      <DependentUpon>Inscription.cs</DependentUpon>
+    <Compile Include="IHM_InscriptionJoueur.Designer.cs">
+      <DependentUpon>IHM_InscriptionJoueur.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plateau.cs">
+    <Compile Include="IHM_Plateau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plateau.Designer.cs">
-      <DependentUpon>Plateau.cs</DependentUpon>
+    <Compile Include="IHM_Plateau.Designer.cs">
+      <DependentUpon>IHM_Plateau.cs</DependentUpon>
     </Compile>
-    <Compile Include="Joueur.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Accueil.resx">
-      <DependentUpon>Accueil.cs</DependentUpon>
+    <EmbeddedResource Include="IHM_Accueil.resx">
+      <DependentUpon>IHM_Accueil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inscription.resx">
-      <DependentUpon>Inscription.cs</DependentUpon>
+    <EmbeddedResource Include="IHM_InscriptionJoueur.resx">
+      <DependentUpon>IHM_InscriptionJoueur.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plateau.resx">
-      <DependentUpon>Plateau.cs</DependentUpon>
+    <EmbeddedResource Include="IHM_Plateau.resx">
+      <DependentUpon>IHM_Plateau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,6 +128,12 @@
     <Content Include="Ressources\joueur.jpg" />
     <Content Include="Ressources\joueurActif.jpg" />
     <Content Include="Ressources\pioche.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Metier\Métier.csproj">
+      <Project>{c33c3185-3e8e-457a-96a4-b13f9d06dcb6}</Project>
+      <Name>Métier</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

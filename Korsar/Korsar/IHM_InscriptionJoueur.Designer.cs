@@ -1,6 +1,6 @@
 ﻿namespace Korsar
 {
-    partial class Inscription
+    partial class IHM_InscriptionJoueur
     {
         /// <summary>
         /// Required designer variable.

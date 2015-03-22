@@ -1,6 +1,6 @@
 ﻿namespace Korsar
 {
-    partial class Accueil
+    partial class IHM_Accueil
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

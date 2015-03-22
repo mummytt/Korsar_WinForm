@@ -1,6 +1,6 @@
 ﻿namespace Korsar
 {
-    partial class Plateau
+    partial class IHM_Plateau
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Plateau));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IHM_Plateau));
             this.l_joueur1 = new System.Windows.Forms.Label();
             this.l_joueur2 = new System.Windows.Forms.Label();
             this.l_joueur4 = new System.Windows.Forms.Label();

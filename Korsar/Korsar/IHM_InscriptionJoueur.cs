@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Metier;
 
 namespace Korsar
 {
-    public partial class Inscription : Form
+    public partial class IHM_InscriptionJoueur : Form
     {
-        public Inscription()
+        public IHM_InscriptionJoueur()
         {
             InitializeComponent();
         }
@@ -76,7 +77,7 @@ namespace Korsar
 
             if(!jeton)
             {
-                Plateau f3 = new Plateau(j1, j2, j3, j4);
+                IHM_Plateau f3 = new IHM_Plateau(j1, j2, j3, j4);
                 this.Hide();
                 f3.ShowDialog();
                 this.Show();

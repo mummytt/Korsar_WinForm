@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Korsar
 {
-    public partial class Plateau : Form
+    public partial class IHM_Plateau : Form
     {
         Joueur joueur1, joueur2, joueur3, joueur4;
 
-        public Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
+        public IHM_Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
         {
             InitializeComponent();
 
@@ -23,10 +23,10 @@ namespace Korsar
             joueur3 = j3;
             joueur4 = j4;
 
-            l_joueur1.Text = joueur1.Nom;
-            l_joueur2.Text = joueur2.Nom;
-            l_joueur3.Text = joueur3.Nom;
-            l_joueur4.Text = joueur4.Nom;
+            l_joueur1.Text = joueur1._Nom;
+            l_joueur2.Text = joueur2._Nom;
+            l_joueur3.Text = joueur3._Nom;
+            l_joueur4.Text = joueur4._Nom;
         }
     }
 }
