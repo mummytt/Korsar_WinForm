@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Korsar
 {
-    public partial class Form1 : Form
+    public partial class Accueil : Form
     {
-        public Form1()
+        public Accueil()
         {
             InitializeComponent();
         }
 
         private void b_jouer_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2();
+            Inscription f2 = new Inscription();
             this.Hide();
             f2.ShowDialog();
             this.Show();

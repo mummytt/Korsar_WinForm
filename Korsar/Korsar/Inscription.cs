@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Korsar
 {
-    public partial class Form2 : Form
+    public partial class Inscription : Form
     {
-        public Form2()
+        public Inscription()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace Korsar
             string nj3 = tb_joueur3.Text;
             string nj4 = tb_joueur4.Text;
 
-            string error = "Le nom dépasse 20 carac";
+            string error = "Le nom n'est pas conforme";
 
             if(!j1.verifNomJoueur(nj1))
             {
@@ -76,7 +76,7 @@ namespace Korsar
 
             if(!jeton)
             {
-                Form3 f3 = new Form3(j1, j2, j3, j4);
+                Plateau f3 = new Plateau(j1, j2, j3, j4);
                 this.Hide();
                 f3.ShowDialog();
                 this.Show();

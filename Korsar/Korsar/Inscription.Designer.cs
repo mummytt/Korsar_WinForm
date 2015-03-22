@@ -1,6 +1,6 @@
 ﻿namespace Korsar
 {
-    partial class Form2
+    partial class Inscription
     {
         /// <summary>
         /// Required designer variable.

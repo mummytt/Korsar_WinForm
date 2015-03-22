@@ -17,7 +17,7 @@ namespace Korsar
         public bool verifNomJoueur(string nom)
         {
 
-            if(nom.Length < 20)
+            if (nom.Length < 20 && nom.Length>0)
             {
                 Nom = nom.ToUpper();
                 return true;

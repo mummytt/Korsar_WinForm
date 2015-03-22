@@ -44,35 +44,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Accueil.Designer.cs">
+      <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Inscription.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Inscription.Designer.cs">
+      <DependentUpon>Inscription.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Plateau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Plateau.Designer.cs">
+      <DependentUpon>Plateau.cs</DependentUpon>
     </Compile>
     <Compile Include="Joueur.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Accueil.resx">
+      <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Inscription.resx">
+      <DependentUpon>Inscription.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Plateau.resx">
+      <DependentUpon>Plateau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -97,7 +97,38 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Ressources\" />
+    <Content Include="Ressources\carte_amiral.jpg" />
+    <Content Include="Ressources\carte_capitaine_bleu.jpg" />
+    <Content Include="Ressources\carte_capitaine_jaune.jpg" />
+    <Content Include="Ressources\carte_capitaine_rouge.jpg" />
+    <Content Include="Ressources\carte_capitaine_vert.jpg" />
+    <Content Include="Ressources\carte_marchand_2.jpg" />
+    <Content Include="Ressources\carte_marchand_3.jpg" />
+    <Content Include="Ressources\carte_marchand_4.jpg" />
+    <Content Include="Ressources\carte_marchand_5.jpg" />
+    <Content Include="Ressources\carte_marchand_6.jpg" />
+    <Content Include="Ressources\carte_marchand_7.jpg" />
+    <Content Include="Ressources\carte_marchand_8.jpg" />
+    <Content Include="Ressources\carte_pirate_1_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_1_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_1_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_1_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_2_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_2_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_2_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_2_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_3_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_3_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_3_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_3_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_4_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_4_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_4_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_4_vert.jpg" />
+    <Content Include="Ressources\dos.jpg" />
+    <Content Include="Ressources\joueur.jpg" />
+    <Content Include="Ressources\joueurActif.jpg" />
+    <Content Include="Ressources\pioche.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

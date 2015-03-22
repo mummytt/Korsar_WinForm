@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Korsar
 {
-    public partial class Form3 : Form
+    public partial class Plateau : Form
     {
         Joueur joueur1, joueur2, joueur3, joueur4;
 
-        public Form3(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
+        public Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
         {
             InitializeComponent();
 
