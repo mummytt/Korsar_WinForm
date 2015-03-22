@@ -44,14 +44,19 @@ namespace Metier
             _Or += or;
         }
 
+        public string getNom()
+        {
+            return _Nom;
+        }
+
         public Dictionary<int, Carte> getMainJoueur()
         {
             return _CartesEnMain;
         }
 
-        public void ajouterMainJoueur(Carte carte)
+        public void ajouterMainJoueur(int index, Carte carte)
         {
-            _CartesEnMain.Add(carte._IDCarte, carte);
+            _CartesEnMain.Add(index, carte);
         }
 
         public CarteMarchand poserCarteMarchand(int idCarte)

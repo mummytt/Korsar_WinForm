@@ -11,11 +11,14 @@ namespace Metier
         public int _nbCartesRestantes;
         public Dictionary<int, Carte> _Deck{ get; set; }
 
+        int _indexCarte = 1;
+
         int _forceCapitaine = 15;
         int _forceAmiral = 20;
 
         public Deck()
         {
+            _Deck = new Dictionary<int, Carte>();
             CarteAmiral amiral = new CarteAmiral(1, "carte_amiral", _forceAmiral);
 
             CarteMarchand marchand2_1 = new CarteMarchand(2, "carte_marchand_2", 2);
@@ -126,115 +129,168 @@ namespace Metier
 
 
             _Deck.Add(marchand2_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand2_2._IDCarte, marchand2_1);
-            _Deck.Add(marchand2_3._IDCarte, marchand2_1);
-            _Deck.Add(marchand2_4._IDCarte, marchand2_1);
-            _Deck.Add(marchand2_5._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_2._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_3._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_4._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_5._IDCarte, marchand2_1);
-            _Deck.Add(marchand3_6._IDCarte, marchand2_1);
-            _Deck.Add(marchand4_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand4_2._IDCarte, marchand2_1);
-            _Deck.Add(marchand4_3._IDCarte, marchand2_1);
-            _Deck.Add(marchand4_4._IDCarte, marchand2_1);
-            _Deck.Add(marchand5_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand5_2._IDCarte, marchand2_1);
-            _Deck.Add(marchand5_3._IDCarte, marchand2_1);
-            _Deck.Add(marchand5_4._IDCarte, marchand2_1);
-            _Deck.Add(marchand5_5._IDCarte, marchand2_1);
-            _Deck.Add(marchand6_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand6_2._IDCarte, marchand2_1);
-            _Deck.Add(marchand7_1._IDCarte, marchand2_1);
-            _Deck.Add(marchand8_1._IDCarte, marchand2_1);
+            _Deck.Add(marchand2_2._IDCarte, marchand2_2);
+            _Deck.Add(marchand2_3._IDCarte, marchand2_3);
+            _Deck.Add(marchand2_4._IDCarte, marchand2_4);
+            _Deck.Add(marchand2_5._IDCarte, marchand2_5);
+            _Deck.Add(marchand3_1._IDCarte, marchand3_1);
+            _Deck.Add(marchand3_2._IDCarte, marchand3_2);
+            _Deck.Add(marchand3_3._IDCarte, marchand3_3);
+            _Deck.Add(marchand3_4._IDCarte, marchand3_4);
+            _Deck.Add(marchand3_5._IDCarte, marchand3_5);
+            _Deck.Add(marchand3_6._IDCarte, marchand3_6);
+            _Deck.Add(marchand4_1._IDCarte, marchand4_1);
+            _Deck.Add(marchand4_2._IDCarte, marchand4_2);
+            _Deck.Add(marchand4_3._IDCarte, marchand4_3);
+            _Deck.Add(marchand4_4._IDCarte, marchand4_4);
+            _Deck.Add(marchand5_1._IDCarte, marchand5_1);
+            _Deck.Add(marchand5_2._IDCarte, marchand5_2);
+            _Deck.Add(marchand5_3._IDCarte, marchand5_3);
+            _Deck.Add(marchand5_4._IDCarte, marchand5_4);
+            _Deck.Add(marchand5_5._IDCarte, marchand5_5);
+            _Deck.Add(marchand6_1._IDCarte, marchand6_1);
+            _Deck.Add(marchand6_2._IDCarte, marchand6_2);
+            _Deck.Add(marchand7_1._IDCarte, marchand7_1);
+            _Deck.Add(marchand8_1._IDCarte, marchand8_1);
 
-            _Deck.Add(amiral._IDCarte, marchand2_1);
+            _Deck.Add(amiral._IDCarte, amiral);
 
-            _Deck.Add(capitaineBleu._IDCarte, marchand2_1);
-            _Deck.Add(capitaineRouge._IDCarte, marchand2_1);
-            _Deck.Add(capitaineVert._IDCarte, marchand2_1);
-            _Deck.Add(capitaineJaune._IDCarte, marchand2_1);
+            _Deck.Add(capitaineBleu._IDCarte, capitaineBleu);
+            _Deck.Add(capitaineRouge._IDCarte, capitaineRouge);
+            _Deck.Add(capitaineVert._IDCarte, capitaineVert);
+            _Deck.Add(capitaineJaune._IDCarte, capitaineJaune);
 
-            _Deck.Add(pirateBleu1_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu1_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateBleu1_1._IDCarte, pirateBleu1_1);
+            _Deck.Add(pirateBleu1_2._IDCarte, pirateBleu1_2);
 
-            _Deck.Add(pirateBleu2_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu2_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu2_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu2_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateBleu2_1._IDCarte, pirateBleu2_1);
+            _Deck.Add(pirateBleu2_2._IDCarte, pirateBleu2_2);
+            _Deck.Add(pirateBleu2_3._IDCarte, pirateBleu2_3);
+            _Deck.Add(pirateBleu2_4._IDCarte, pirateBleu2_4);
 
-            _Deck.Add(pirateBleu3_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu3_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu3_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu3_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateBleu3_1._IDCarte, pirateBleu3_1);
+            _Deck.Add(pirateBleu3_2._IDCarte, pirateBleu3_2);
+            _Deck.Add(pirateBleu3_3._IDCarte, pirateBleu3_3);
+            _Deck.Add(pirateBleu3_4._IDCarte, pirateBleu3_4);
 
-            _Deck.Add(pirateBleu4_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu4_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateBleu4_1._IDCarte, pirateBleu4_1);
+            _Deck.Add(pirateBleu4_2._IDCarte, pirateBleu4_2);
 
 
-            _Deck.Add(pirateVert1_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateBleu1_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateVert1_1._IDCarte, pirateVert1_1);
+            _Deck.Add(pirateVert1_2._IDCarte, pirateVert1_2);
 
-            _Deck.Add(pirateVert2_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert2_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert2_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert2_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateVert2_1._IDCarte, pirateVert2_1);
+            _Deck.Add(pirateVert2_2._IDCarte, pirateVert2_2);
+            _Deck.Add(pirateVert2_3._IDCarte, pirateVert2_3);
+            _Deck.Add(pirateVert2_4._IDCarte, pirateVert2_4);
 
-            _Deck.Add(pirateVert3_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert3_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert3_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert3_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateVert3_1._IDCarte, pirateVert3_1);
+            _Deck.Add(pirateVert3_2._IDCarte, pirateVert3_2);
+            _Deck.Add(pirateVert3_3._IDCarte, pirateVert3_3);
+            _Deck.Add(pirateVert3_4._IDCarte, pirateVert3_4);
 
-            _Deck.Add(pirateVert4_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateVert4_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateVert4_1._IDCarte, pirateVert4_1);
+            _Deck.Add(pirateVert4_2._IDCarte, pirateVert4_2);
 
-            _Deck.Add(pirateRouge1_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge1_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateRouge1_1._IDCarte, pirateRouge1_1);
+            _Deck.Add(pirateRouge1_2._IDCarte, pirateRouge1_2);
 
-            _Deck.Add(pirateRouge2_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge2_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge2_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge2_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateRouge2_1._IDCarte, pirateRouge2_1);
+            _Deck.Add(pirateRouge2_2._IDCarte, pirateRouge2_2);
+            _Deck.Add(pirateRouge2_3._IDCarte, pirateRouge2_3);
+            _Deck.Add(pirateRouge2_4._IDCarte, pirateRouge2_4);
 
-            _Deck.Add(pirateRouge3_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge3_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge3_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge3_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateRouge3_1._IDCarte, pirateRouge3_1);
+            _Deck.Add(pirateRouge3_2._IDCarte, pirateRouge3_2);
+            _Deck.Add(pirateRouge3_3._IDCarte, pirateRouge3_3);
+            _Deck.Add(pirateRouge3_4._IDCarte, pirateRouge3_4);
 
-            _Deck.Add(pirateRouge4_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateRouge4_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateRouge4_1._IDCarte, pirateRouge4_1);
+            _Deck.Add(pirateRouge4_2._IDCarte, pirateRouge4_2);
 
-            _Deck.Add(pirateJaune1_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune1_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateJaune1_1._IDCarte, pirateJaune1_1);
+            _Deck.Add(pirateJaune1_2._IDCarte, pirateJaune1_2);
 
-            _Deck.Add(pirateJaune2_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune2_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune2_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune2_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateJaune2_1._IDCarte, pirateJaune2_1);
+            _Deck.Add(pirateJaune2_2._IDCarte, pirateJaune2_2);
+            _Deck.Add(pirateJaune2_3._IDCarte, pirateJaune2_3);
+            _Deck.Add(pirateJaune2_4._IDCarte, pirateJaune2_4);
 
-            _Deck.Add(pirateJaune3_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune3_2._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune3_3._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune3_4._IDCarte, marchand2_1);
+            _Deck.Add(pirateJaune3_1._IDCarte, pirateJaune3_1);
+            _Deck.Add(pirateJaune3_2._IDCarte, pirateJaune3_2);
+            _Deck.Add(pirateJaune3_3._IDCarte, pirateJaune3_3);
+            _Deck.Add(pirateJaune3_4._IDCarte, pirateJaune3_4);
 
-            _Deck.Add(pirateJaune4_1._IDCarte, marchand2_1);
-            _Deck.Add(pirateJaune4_2._IDCarte, marchand2_1);
+            _Deck.Add(pirateJaune4_1._IDCarte, pirateJaune4_1);
+            _Deck.Add(pirateJaune4_2._IDCarte, pirateJaune4_2);
            
 
         }
 
         public void melangerCartes()
         {
+            Random _randNum = new Random();
+            int _nbCartes = _Deck.Count;
+
+            Dictionary<int, Carte> _newDeck = new Dictionary<int, Carte>();
+            Carte _temp;
+
+            int[] tableauID = new int[78];
+
+            for (int i = 1; i < _nbCartes; i++ )
+            {
+                tableauID[0] = i;
+            }
+
+            for (int i = 1; i < _nbCartes; i++ )
+            {
+                int _nombrAleatoire = _randNum.Next(78);
+                bool jeton = false;
+
+                for (int j = 0; j < _nbCartes; j++ )
+                {
+                    if(_nombrAleatoire == tableauID[j])
+                    {
+                        tableauID[j] = -1;
+                        jeton = true;
+                    }
+                }
+
+                if(!jeton)
+                {
+                    if (_Deck.TryGetValue(_nombrAleatoire, out _temp))
+                    {
+                        _newDeck.Add(i, _temp);
+                    }
+                }
+                    
+            }
+
+            _Deck = _newDeck;
+
 
         }
 
         public Carte piocher()
         {
-            Carte carte = new Carte();
+            Carte carte;
+
+            _Deck.TryGetValue(_indexCarte, out carte);
+            _Deck.Remove(_indexCarte);
+            _indexCarte++;
 
             return carte;
+        }
+
+        public int getIndex()
+        {
+            return _indexCarte;
+        }
+
+        public int getNombreCartes()
+        {
+            return _Deck.Count;
         }
 
 
