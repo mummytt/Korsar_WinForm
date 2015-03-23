@@ -123,6 +123,7 @@ namespace Metier
             if (_etape > 4)
             {
                 _etape = 1;
+                changeTour();
             }
 
         }

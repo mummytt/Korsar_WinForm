@@ -159,6 +159,7 @@ namespace Korsar
             if (plateau.getJoueurs().TryGetValue(plateau.getEtape(), out jonh))
             {
                 l_or.Text = "Or : " + jonh.getOr();
+                l_tour.Text = "Tour : " + plateau.afficherTour();
                 afficherMainJoueur(jonh.getID());
 
 
