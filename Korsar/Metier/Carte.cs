@@ -8,27 +8,32 @@ namespace Metier
 {
     public class Carte
     {
-        public int _IDCarte { get; set; }
-        public string _Couleur { get; set; }
-        public string _NomCarte { get; set; }
+        protected int _idCarte;
+        protected string _couleur;
+        protected  string _nomCarte;
 
         public Carte()
         {
-            _IDCarte = 0;
-            _Couleur = "";
-            _NomCarte = "";
+            _idCarte = 0;
+            _couleur = "";
+            _nomCarte = "";
         }
 
         public Carte(int id, string couleur, string nom)
         {
-            _IDCarte = id;
-            _Couleur = couleur;
-            _NomCarte = nom;
+            _idCarte = id;
+            _couleur = couleur;
+            _nomCarte = nom;
+        }
+
+        public int getIdCarte()
+        {
+            return _idCarte;
         }
 
         public string afficherNomCarte()
         {
-            return _NomCarte;
+            return _nomCarte;
         }
     }
 }

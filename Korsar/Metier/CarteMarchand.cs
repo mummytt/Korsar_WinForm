@@ -12,16 +12,16 @@ namespace Metier
 
         public CarteMarchand()
         {
-            _IDCarte = 0;
-            _NomCarte = "";
-            _Couleur = "";
+            _idCarte = 0;
+            _nomCarte = "";
+            _couleur = "";
             _valeurOr = 0;
         }
 
         public CarteMarchand(int id, string nom, int or)
         {
-            _IDCarte = id;
-            _NomCarte = nom;
+            _idCarte = id;
+            _nomCarte = nom;
             _valeurOr = or;
         }
     }

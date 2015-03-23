@@ -18,8 +18,9 @@ namespace Korsar
         int _espacePopCarteHauteur = 500;
         int _tailleCarteLargeur = 92;
         int _tailleCarteHauteur = 180;
-
-        
+        int _décalage = 100;
+        int _décalageCarte = 0;
+        Dictionary<int, PictureBox> _mainImageJoueur;
         Dictionary<string, Bitmap> _imagesCartes = new Dictionary<string, Bitmap>();
         
 
@@ -27,14 +28,42 @@ namespace Korsar
         {
             InitializeComponent();
             plateau = new Plateau(j1, j2, j3, j4);
-            
+            _mainImageJoueur = new Dictionary<int, PictureBox>();
             l_joueur1.Text = plateau.afficherNomJoueur(1);
             l_joueur2.Text = plateau.afficherNomJoueur(2);
             l_joueur3.Text = plateau.afficherNomJoueur(3);
             l_joueur4.Text = plateau.afficherNomJoueur(4);
 
             //Rajouter toutes les cartes ressources : 
+            _imagesCartes.Add("carte_amiral", Properties.Resources.carte_amiral);
+            _imagesCartes.Add("carte_capitaine_bleu", Properties.Resources.carte_capitaine_bleu);
+            _imagesCartes.Add("carte_capitaine_jaune", Properties.Resources.carte_capitaine_jaune);
+            _imagesCartes.Add("carte_capitaine_rouge", Properties.Resources.carte_capitaine_rouge);
+            _imagesCartes.Add("carte_capitaine_vert", Properties.Resources.carte_capitaine_vert);
             _imagesCartes.Add("carte_marchand_2", Properties.Resources.carte_marchand_2);
+            _imagesCartes.Add("carte_marchand_3", Properties.Resources.carte_marchand_3);
+            _imagesCartes.Add("carte_marchand_4", Properties.Resources.carte_marchand_4);
+            _imagesCartes.Add("carte_marchand_5", Properties.Resources.carte_marchand_5);
+            _imagesCartes.Add("carte_marchand_6", Properties.Resources.carte_marchand_6);
+            _imagesCartes.Add("carte_marchand_7", Properties.Resources.carte_marchand_7);
+            _imagesCartes.Add("carte_marchand_8", Properties.Resources.carte_marchand_8);
+            _imagesCartes.Add("carte_pirate_1_bleu", Properties.Resources.carte_pirate_1_bleu);
+            _imagesCartes.Add("carte_pirate_2_bleu", Properties.Resources.carte_pirate_2_bleu);
+            _imagesCartes.Add("carte_pirate_3_bleu", Properties.Resources.carte_pirate_3_bleu);
+            _imagesCartes.Add("carte_pirate_4_bleu", Properties.Resources.carte_pirate_4_bleu);
+            _imagesCartes.Add("carte_pirate_1_jaune", Properties.Resources.carte_pirate_1_jaune);
+            _imagesCartes.Add("carte_pirate_2_jaune", Properties.Resources.carte_pirate_2_jaune);
+            _imagesCartes.Add("carte_pirate_3_jaune", Properties.Resources.carte_pirate_3_jaune);
+            _imagesCartes.Add("carte_pirate_4_jaune", Properties.Resources.carte_pirate_4_jaune);
+            _imagesCartes.Add("carte_pirate_1_rouge", Properties.Resources.carte_pirate_1_rouge);
+            _imagesCartes.Add("carte_pirate_2_rouge", Properties.Resources.carte_pirate_2_rouge);
+            _imagesCartes.Add("carte_pirate_3_rouge", Properties.Resources.carte_pirate_3_rouge);
+            _imagesCartes.Add("carte_pirate_4_rouge", Properties.Resources.carte_pirate_4_rouge);
+            _imagesCartes.Add("carte_pirate_1_vert", Properties.Resources.carte_pirate_1_vert);
+            _imagesCartes.Add("carte_pirate_2_vert", Properties.Resources.carte_pirate_2_vert);
+            _imagesCartes.Add("carte_pirate_3_vert", Properties.Resources.carte_pirate_3_vert);
+            _imagesCartes.Add("carte_pirate_4_vert", Properties.Resources.carte_pirate_4_vert);
+            _imagesCartes.Add("dos", Properties.Resources.dos);
 
             l_tour.Text = "Tour : " + plateau.afficherTour();
 
@@ -47,7 +76,7 @@ namespace Korsar
 
             Joueur jonh;
 
-            if (plateau._Joueurs.TryGetValue(1, out jonh))
+            if (plateau.getJoueurs().TryGetValue(1, out jonh))
             {
                 l_or.Text = "Or : " + jonh.getOr();
 
@@ -80,30 +109,59 @@ namespace Korsar
                 plateau.donnerCarteAJoueur(4);
 
                 
-                
-
 
             }
         }
 
-        public void ajouterCarteEcran(string nomCarte)
+        public void afficherMainJoueur(int idJoueur)
         {
-            PictureBox pb = new PictureBox();
+            Joueur jonh = new Joueur();
+            Bitmap temp;
             
-            pb.Image = Properties.Resources.;
-            pb.Location = new System.Drawing.Point(_espacePopCarteLargeur, _espacePopCarteHauteur);
-            pb.Size = new System.Drawing.Size(_tailleCarteLargeur, _tailleCarteHauteur);
-            Controls.Add(pb);
+
+            if (plateau.getJoueurs().TryGetValue(idJoueur, out jonh))
+            {
+                int i = 0;
+                foreach (KeyValuePair<int, Carte> item in jonh.getMainJoueur())
+                {
+
+                    if (_imagesCartes.TryGetValue(item.Value.afficherNomCarte(), out temp))
+                    {
+
+                        PictureBox pb = new PictureBox();
+                        pb.Image = temp;
+                        
+                        pb.Location = new System.Drawing.Point(_espacePopCarteLargeur + _décalageCarte, _espacePopCarteHauteur);
+                        pb.Size = new System.Drawing.Size(_tailleCarteLargeur, _tailleCarteHauteur);
+
+                        _mainImageJoueur.Add(i, pb);
+
+                        _décalageCarte += _décalage;
+                        i++;
+                    }
+
+                }
+
+                foreach(KeyValuePair<int, PictureBox> item in _mainImageJoueur)
+                {
+                    Controls.Add(item.Value);
+                }
+                
+            }
+            _décalageCarte = 0;
         }
 
-        public void ChargementPlateau()
+        public void chargementPlateau()
         {
             changeImageEtape();
             Joueur jonh;
 
-            if (plateau._Joueurs.TryGetValue(plateau.getEtape(), out jonh))
+            if (plateau.getJoueurs().TryGetValue(plateau.getEtape(), out jonh))
             {
                 l_or.Text = "Or : " + jonh.getOr();
+                afficherMainJoueur(jonh.getID());
+
+
             }
 
         }
@@ -135,10 +193,26 @@ namespace Korsar
             }
         }
 
+        public void nettoyerPlateau()
+        {
+            int nombreCartes = _mainImageJoueur.Count;
+
+            foreach(KeyValuePair<int, PictureBox> item in _mainImageJoueur)
+            {
+                Controls.Remove(item.Value);
+            }
+
+            for (int i = 0; i < nombreCartes; i++)
+            {
+                _mainImageJoueur.Remove(i);
+            }
+        }
+
         private void b_etape_Click(object sender, EventArgs e)
         {
+            this.nettoyerPlateau();
             plateau.etapeSuivante();
-            ChargementPlateau();
+            this.chargementPlateau();
         }
 
 

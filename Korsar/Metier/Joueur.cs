@@ -8,55 +8,65 @@ namespace Metier
 {
     public class Joueur
     {
-        public int _ID { get; set; }
-        public string _Nom { get; set; }
-        public int _NbCartesEnMain { get; set; }
-        public int _Or { get; set; }
-        public Dictionary<int, Carte> _CartesEnMain { get; set; }
+        private int _id;
+        private string _nom;
+        private int _nbCartesEnMain;
+        private int _or;
+        private Dictionary<int, Carte> _cartesEnMain;
         
         public Joueur()
         {
-            _ID = 0;
-            _Nom = "";
-            _NbCartesEnMain = 0;
-            _Or = 0;
-            _CartesEnMain = new Dictionary<int, Carte>();
+            _id = 0;
+            _nom = "";
+            _nbCartesEnMain = 0;
+            _or = 0;
+            _cartesEnMain = new Dictionary<int, Carte>();
         }
 
         public Joueur(int id, string nom)
         {
-            _ID = id;
-            _Nom = nom;
-            _NbCartesEnMain = 0;
-            _Or = 0;
-            _CartesEnMain = new Dictionary<int, Carte>();
+            _id = id;
+            _nom = nom;
+            _nbCartesEnMain = 0;
+            _or = 0;
+            _cartesEnMain = new Dictionary<int, Carte>();
         }
 
         public int getOr()
         {
             CartePirate e = new CartePirate();
             
-            return _Or;
+            return _or;
+        }
+        
+        public int getID()
+        {
+            return _id;
+        }
+
+        public void setID(int id)
+        {
+            _id = id;
         }
 
         public void setOr(int or)
         {
-            _Or += or;
+            _or += or;
         }
 
         public string getNom()
         {
-            return _Nom;
+            return _nom;
         }
 
         public Dictionary<int, Carte> getMainJoueur()
         {
-            return _CartesEnMain;
+            return _cartesEnMain;
         }
 
         public void ajouterMainJoueur(int index, Carte carte)
         {
-            _CartesEnMain.Add(index, carte);
+            _cartesEnMain.Add(index, carte);
         }
 
         public CarteMarchand poserCarteMarchand(int idCarte)
@@ -93,7 +103,7 @@ namespace Metier
 
             if (nom.Length < 20 && nom.Length>0)
             {
-                _Nom = nom.ToUpper();
+                _nom = nom.ToUpper();
                 return true;
             }
 

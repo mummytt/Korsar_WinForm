@@ -64,7 +64,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Resources\carte.cs" />
     <EmbeddedResource Include="IHM_Accueil.resx">
       <DependentUpon>IHM_Accueil.cs</DependentUpon>
     </EmbeddedResource>

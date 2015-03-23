@@ -12,17 +12,17 @@ namespace Metier
 
         public CartePirate()
         {
-            _IDCarte = 0;
-            _NomCarte = "";
-            _Couleur = "";
+            _idCarte = 0;
+            _nomCarte = "";
+            _couleur = "";
             _valeurAttaque = 0;
         }
 
         public CartePirate(int id, string nom, string couleur, int attaque)
         {
-            _IDCarte = id;
-            _NomCarte = nom;
-            _Couleur = couleur;
+            _idCarte = id;
+            _nomCarte = nom;
+            _couleur = couleur;
             _valeurAttaque = attaque;
         }
 
