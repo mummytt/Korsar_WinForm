@@ -33,7 +33,7 @@
             this.l_joueur2 = new System.Windows.Forms.Label();
             this.l_joueur4 = new System.Windows.Forms.Label();
             this.l_joueur3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pb_pioche = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -47,7 +47,7 @@
             this.l_presentation1 = new System.Windows.Forms.Label();
             this.l_tour = new System.Windows.Forms.Label();
             this.b_etape = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_pioche)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -95,14 +95,15 @@
             this.l_joueur3.TabIndex = 3;
             this.l_joueur3.Text = "Joueur 3";
             // 
-            // pictureBox1
+            // pb_pioche
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(23, 191);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 225);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.pb_pioche.Image = ((System.Drawing.Image)(resources.GetObject("pb_pioche.Image")));
+            this.pb_pioche.Location = new System.Drawing.Point(23, 191);
+            this.pb_pioche.Name = "pb_pioche";
+            this.pb_pioche.Size = new System.Drawing.Size(141, 225);
+            this.pb_pioche.TabIndex = 5;
+            this.pb_pioche.TabStop = false;
+            this.pb_pioche.Click += new System.EventHandler(this.pb_pioche_Click);
             // 
             // pictureBox3
             // 
@@ -232,7 +233,7 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pb_pioche);
             this.Controls.Add(this.l_tour);
             this.Controls.Add(this.l_joueur3);
             this.Controls.Add(this.l_joueur4);
@@ -240,7 +241,7 @@
             this.Controls.Add(this.l_joueur1);
             this.Name = "IHM_Plateau";
             this.Text = "Form3";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_pioche)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -261,7 +262,7 @@
         private System.Windows.Forms.Label l_joueur2;
         private System.Windows.Forms.Label l_joueur4;
         private System.Windows.Forms.Label l_joueur3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pb_pioche;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;

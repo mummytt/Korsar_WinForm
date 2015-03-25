@@ -67,35 +67,44 @@ namespace Metier
         public void ajouterMainJoueur(int index, Carte carte)
         {
             _cartesEnMain.Add(index, carte);
+            _nbCartesEnMain += 1;
         }
 
         public CarteMarchand poserCarteMarchand(int idCarte)
         {
+            _nbCartesEnMain -= 1;
             return new CarteMarchand();
         }
 
         public CartePirate poserCartePirate(int idCarte)
         {
+            _nbCartesEnMain -= 1;
             return new CartePirate();
         }
 
         public CarteCapitaine poserCarteCapitaine(int idCarte)
         {
+            _nbCartesEnMain -= 1;
             return new CarteCapitaine();
         }
 
         public CarteAmiral poserCarteAmiral(int idCarte)
         {
+            _nbCartesEnMain -= 1;
             return new CarteAmiral();
         }
 
         public Carte poserCarte(int idCarte)
         {
+            _nbCartesEnMain -= 1;
             return new Carte();
         }
         
 
-
+        public int getNombreCartesEnMain()
+        {
+            return _nbCartesEnMain;
+        }
 
 
         public bool verifNomJoueur(string nom)

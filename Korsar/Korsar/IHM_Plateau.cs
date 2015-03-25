@@ -18,7 +18,9 @@ namespace Korsar
         int _espacePopCarteHauteur = 500;
         int _tailleCarteLargeur = 92;
         int _tailleCarteHauteur = 180;
-        int _décalage = 100;
+        int _décalage_max = 100;
+        int _décalage_mid = 50;
+        int _décalage_min = 25;
         int _décalageCarte = 0;
         Dictionary<int, PictureBox> _mainImageJoueur;
         Dictionary<string, Bitmap> _imagesCartes = new Dictionary<string, Bitmap>();
@@ -68,18 +70,15 @@ namespace Korsar
             l_tour.Text = "Tour : " + plateau.afficherTour();
 
             initialisationPlateau();
+            this.chargementPlateau();
         }
 
         public void initialisationPlateau()
         {
-            changeImageEtape();
-
             Joueur jonh;
 
             if (plateau.getJoueurs().TryGetValue(1, out jonh))
             {
-                l_or.Text = "Or : " + jonh.getOr();
-
                 plateau.donnerCarteAJoueur(1);
                 plateau.donnerCarteAJoueur(1);
                 plateau.donnerCarteAJoueur(1);
@@ -107,9 +106,6 @@ namespace Korsar
                 plateau.donnerCarteAJoueur(4);
                 plateau.donnerCarteAJoueur(4);
                 plateau.donnerCarteAJoueur(4);
-
-                
-
             }
         }
 
@@ -132,19 +128,47 @@ namespace Korsar
                         pb.Image = temp;
                         
                         pb.Location = new System.Drawing.Point(_espacePopCarteLargeur + _décalageCarte, _espacePopCarteHauteur);
-                        pb.Size = new System.Drawing.Size(_tailleCarteLargeur, _tailleCarteHauteur);
+                        pb.BorderStyle = BorderStyle.FixedSingle;
 
                         _mainImageJoueur.Add(i, pb);
 
-                        _décalageCarte += _décalage;
+                        if(jonh.getNombreCartesEnMain() == (i+1))
+                        {
+                            pb.Size = new System.Drawing.Size(_tailleCarteLargeur, _tailleCarteHauteur);
+                        }
+                        else
+                        {
+                            if (jonh.getNombreCartesEnMain() <= 6)
+                            {
+                                _décalageCarte += _décalage_max;
+                                pb.Size = new System.Drawing.Size(_tailleCarteLargeur, _tailleCarteHauteur);
+                            }
+                            else if (jonh.getNombreCartesEnMain() <= 11)
+                            {
+                                _décalageCarte += _décalage_mid;
+                                pb.Size = new System.Drawing.Size(_tailleCarteLargeur - _décalage_mid + 9, _tailleCarteHauteur);
+                            }
+                            else
+                            {
+                                _décalageCarte += _décalage_min;
+                                pb.Size = new System.Drawing.Size(25, _tailleCarteHauteur);
+                            }
+                        }
+
                         i++;
                     }
 
+                    
+
                 }
+
 
                 foreach(KeyValuePair<int, PictureBox> item in _mainImageJoueur)
                 {
                     Controls.Add(item.Value);
+                    Controls.SetChildIndex(item.Value, i);
+                    i--;
+                    
                 }
                 
             }
@@ -156,13 +180,12 @@ namespace Korsar
             changeImageEtape();
             Joueur jonh;
 
+            l_tour.Text = "Tour : " + plateau.afficherTour();
+
             if (plateau.getJoueurs().TryGetValue(plateau.getEtape(), out jonh))
             {
                 l_or.Text = "Or : " + jonh.getOr();
-                l_tour.Text = "Tour : " + plateau.afficherTour();
                 afficherMainJoueur(jonh.getID());
-
-
             }
 
         }
@@ -216,7 +239,12 @@ namespace Korsar
             this.chargementPlateau();
         }
 
-
+        private void pb_pioche_Click(object sender, EventArgs e)
+        {
+            plateau.donnerCarteAJoueur(plateau.getEtape());
+            this.nettoyerPlateau();
+            this.chargementPlateau();
+        }
 
     }
 }
