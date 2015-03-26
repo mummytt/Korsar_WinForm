@@ -13,9 +13,6 @@ namespace Metier
         private Dictionary<int, Joueur> _joueurs;
         private int _tour;
         private int _etape;
-        private Dictionary<int, Carte> _mainJoueurEnCours;
-
-       
 
         public Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
         {
@@ -35,60 +32,68 @@ namespace Metier
 
             _tour = 1;
             _etape = 1;
-            _mainJoueurEnCours = new Dictionary<int, Carte>(); 
 
         }
 
-        public void ajouterOrJoueur(int or, int idJoueur)
+        public void setOrJoueur(int or, int idJoueur)
         {
-            Joueur jonh = new Joueur();
-
-            if (_joueurs.TryGetValue(idJoueur, out jonh))
-            {
-                jonh.setOr(or);
-            }
-
+            Joueur jonh = getJoueur(idJoueur); 
+            jonh.setOr(or);
             _joueurs.Remove(idJoueur);
             _joueurs.Add(idJoueur, jonh);
         }
+
+        public int getOrJoueurCurrent()
+        {
+            Joueur jonh = getJoueurCurrent(); ;
+
+            return jonh.getOr();
+        }
+
 
         public Dictionary<int, Joueur> getJoueurs()
         {
             return _joueurs;
         }
 
-        public int afficherOrJoueur(int idJoueur)
+        public Joueur getJoueur(int id)
         {
-            Joueur jonh = new Joueur();
-
-            if (_joueurs.TryGetValue(idJoueur, out jonh))
+            foreach (var joueur in _joueurs)
             {
-                return jonh.getOr();
+                if (joueur.Key == id)
+                {
+                    return joueur.Value;
+                }
             }
 
-            return 0;
+            return null;
+
         }
 
-        public int afficherTour()
+        public Joueur getJoueurCurrent()
         {
-            return _tour;
-        }
-
-        public void changeTour()
-        {
-            _tour += 1;
-        }
-        
-        public string afficherNomJoueur(int idJoueur)
-        {
-            Joueur jonh = new Joueur();
-
-            if (_joueurs.TryGetValue(idJoueur, out jonh))
+            foreach(var joueur in _joueurs)
             {
-                return jonh.getNom();
+                if(joueur.Key == _etape)
+                {
+                    return joueur.Value;
+                }
             }
 
-            return "";
+            return null;
+            
+        }
+
+        public void setEtapeSuivante()
+        {
+            _etape += 1;
+
+            if (_etape > 4)
+            {
+                _etape = 1;
+                setChangeTour();
+            }
+
         }
 
         public int getEtape()
@@ -96,50 +101,79 @@ namespace Metier
             return _etape;
         }
 
-        public void donnerCarteAJoueur(int idJoueur)
+        public int getTour()
         {
-            Joueur jonh;
-
-            if (_joueurs.TryGetValue(idJoueur, out jonh))
-            {
-                Carte carte = _deck.piocher();
-
-                jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
-
-                _joueurs.Remove(idJoueur);
-                _joueurs.Add(idJoueur, jonh);
-            }
+            return _tour;
         }
 
-        public bool verifierGainMarchant(int idJoueur)
+        public void setChangeTour()
+        {
+            _tour += 1;
+        }
+        
+        public string getNomJoueur(int idJoueur)
+        {
+            Joueur jonh = getJoueur(idJoueur); 
+
+            return jonh.getNom();
+        }
+
+        public void setDonnerCarteAJoueur(int idJoueur)
+        {
+            Joueur jonh = getJoueur(idJoueur); 
+            Carte carte = _deck.piocher();
+            jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
+            _joueurs.Remove(idJoueur);
+            _joueurs.Add(idJoueur, jonh);
+        }
+
+        
+        public void setDonnerCarteAJoueurCurrent()
+        {
+            Joueur jonh = getJoueurCurrent();
+            Carte carte = _deck.piocher();
+            jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
+            _joueurs.Remove(_etape);
+            _joueurs.Add(_etape, jonh);
+        }
+
+        public bool getVerifierGainMarchant(int idJoueur)
         {
             return false;
         }
 
-        public void etapeSuivante()
-        {
-            _etape += 1;
+        
 
-            if (_etape > 4)
-            {
-                _etape = 1;
-                changeTour();
-            }
-
-        }
-
-        public Dictionary<int, Carte> getMainJoueur(int idJoueur)
+        public Dictionary<int, Carte> getMainJoueurCurrent()
         {
             Dictionary<int, Carte> main = new Dictionary<int,Carte>();
-
-            Joueur jonh = new Joueur();
-
-            if (_joueurs.TryGetValue(idJoueur, out jonh))
-            {
-                main = jonh.getMainJoueur();
-            }
+            Joueur jonh = getJoueurCurrent();
+            main = jonh.getMainJoueur();
 
             return main;
+        }
+
+        public int getNbCartesMainJoueurCurrent()
+        {
+            int nbCartes = 0;
+            Joueur jonh = getJoueurCurrent();
+            nbCartes = jonh.getNombreCartesEnMain();
+
+            return nbCartes;
+        }
+
+
+        public bool getVerifAPiocherCurrent()
+        {
+            Joueur jonh = getJoueur(_etape);
+
+            return jonh.getAPiocher();
+        }
+
+        public void setAPiocherCurrent(bool value)
+        {
+            Joueur jonh = getJoueur(_etape);
+            jonh.setAPiocher(value);
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace Metier
@@ -16,13 +17,15 @@ namespace Metier
             _nomCarte = "";
             _couleur = "";
             _valeurOr = 0;
+            _imageCarte = null;
         }
 
-        public CarteMarchand(int id, string nom, int or)
+        public CarteMarchand(int id, string nom, int or, Bitmap image)
         {
             _idCarte = id;
             _nomCarte = nom;
             _valeurOr = or;
+            _imageCarte = image;
         }
     }
 }

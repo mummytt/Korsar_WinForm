@@ -12,6 +12,7 @@ namespace Metier
         private string _nom;
         private int _nbCartesEnMain;
         private int _or;
+        private bool _aPiocher;
         private Dictionary<int, Carte> _cartesEnMain;
         
         public Joueur()
@@ -68,6 +69,7 @@ namespace Metier
         {
             _cartesEnMain.Add(index, carte);
             _nbCartesEnMain += 1;
+            _aPiocher = true;
         }
 
         public CarteMarchand poserCarteMarchand(int idCarte)
@@ -103,6 +105,7 @@ namespace Metier
 
         public int getNombreCartesEnMain()
         {
+            _aPiocher = false;
             return _nbCartesEnMain;
         }
 
@@ -117,6 +120,16 @@ namespace Metier
             }
 
             return false;
+        }
+
+        public bool getAPiocher()
+        {
+            return _aPiocher;
+        }
+
+        public void setAPiocher(bool value)
+        {
+            _aPiocher = value;
         }
 
     }

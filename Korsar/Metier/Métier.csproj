@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,52 @@
     <Compile Include="Joueur.cs" />
     <Compile Include="Plateau.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ressources\carte_amiral.jpg" />
+    <Content Include="Ressources\carte_capitaine_bleu.jpg" />
+    <Content Include="Ressources\carte_capitaine_jaune.jpg" />
+    <Content Include="Ressources\carte_capitaine_rouge.jpg" />
+    <Content Include="Ressources\carte_capitaine_vert.jpg" />
+    <Content Include="Ressources\carte_marchand_2.jpg" />
+    <Content Include="Ressources\carte_marchand_3.jpg" />
+    <Content Include="Ressources\carte_marchand_4.jpg" />
+    <Content Include="Ressources\carte_marchand_5.jpg" />
+    <Content Include="Ressources\carte_marchand_6.jpg" />
+    <Content Include="Ressources\carte_marchand_7.jpg" />
+    <Content Include="Ressources\carte_marchand_8.jpg" />
+    <Content Include="Ressources\carte_pirate_1_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_1_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_1_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_1_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_2_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_2_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_2_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_2_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_3_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_3_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_3_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_3_vert.jpg" />
+    <Content Include="Ressources\carte_pirate_4_bleu.jpg" />
+    <Content Include="Ressources\carte_pirate_4_jaune.jpg" />
+    <Content Include="Ressources\carte_pirate_4_rouge.jpg" />
+    <Content Include="Ressources\carte_pirate_4_vert.jpg" />
+    <Content Include="Ressources\dos.jpg" />
+    <Content Include="Ressources\joueur.jpg" />
+    <Content Include="Ressources\joueurActif.jpg" />
+    <Content Include="Ressources\pioche.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
