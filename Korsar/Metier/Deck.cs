@@ -10,7 +10,7 @@ namespace Metier
     {
         private int _nbCartesRestantes;
         private Dictionary<int, Carte> _deck;
-
+        private Dictionary<int, Carte> _deckModel;
         private int _indexCarte = 1;
 
         private int _forceCapitaine = 15;
@@ -19,6 +19,7 @@ namespace Metier
         public Deck()
         {
             _deck = new Dictionary<int, Carte>();
+            _deckModel = new Dictionary<int, Carte>();
             CarteAmiral amiral = new CarteAmiral(1, "carte_amiral", _forceAmiral, Properties.Resources.carte_amiral);
 
             CarteMarchand marchand2_1 = new CarteMarchand(2, "carte_marchand_2", 2, Properties.Resources.carte_marchand_2);
@@ -230,7 +231,7 @@ namespace Metier
             _deck.Add(pirateJaune4_1.getIdCarte(), pirateJaune4_1);
             _deck.Add(pirateJaune4_2.getIdCarte(), pirateJaune4_2);
 
-
+            _deckModel = _deck;
         }
 
         public Dictionary<int, Carte> getDeck()
@@ -309,11 +310,11 @@ namespace Metier
             return carte;
         }
 
-        public Carte getCarteByNom(string nom)
+        public Carte getCarteByID(int idCarte)
         {
-            foreach (var carte in _deck)
+            foreach (var carte in _deckModel)
             {
-                if(carte.Value.afficherNomCarte() == nom)
+                if(carte.Key == idCarte)
                 {
                     return carte.Value;
                 }

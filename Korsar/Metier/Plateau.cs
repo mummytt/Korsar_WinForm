@@ -11,6 +11,7 @@ namespace Metier
     {
         private Deck _deck;
         private Dictionary<int, Joueur> _joueurs;
+        private Dictionary<int, Carte> _cartesTapis;
         private int _tour;
         private int _etape;
 
@@ -27,6 +28,7 @@ namespace Metier
             _joueurs.Add(3, j3);
             _joueurs.Add(4, j4);
 
+            _cartesTapis = new Dictionary<int, Carte>();
             _deck = new Deck();
             _deck.melangerCartes();
 
@@ -91,8 +93,30 @@ namespace Metier
             if (_etape > 4)
             {
                 _etape = 1;
-                setChangeTour();
+                _tour += 1;
             }
+
+            setJoueurCurrentAPoserUneCarte(false);
+            setJoueurCurrentAPiocher(false);
+
+            Dictionary<int, Carte> newCartes = new Dictionary<int, Carte>();
+
+            foreach (var carte in _cartesTapis)
+            {
+                if(carte.Key == 4)
+                {
+                    //Vérif bateau gagné ou pas
+                    newCartes.Add(1, carte.Value);
+                }
+                else
+                {
+                    newCartes.Add(carte.Key + 1, carte.Value);
+                }
+                
+            }
+
+            _cartesTapis = newCartes;
+
 
         }
 
@@ -105,17 +129,10 @@ namespace Metier
         {
             return _tour;
         }
-
-        public void setChangeTour()
-        {
-            _tour += 1;
-        }
         
         public string getNomJoueur(int idJoueur)
         {
-            Joueur jonh = getJoueur(idJoueur); 
-
-            return jonh.getNom();
+            return getJoueur(idJoueur).getNom();
         }
 
         public void setDonnerCarteAJoueur(int idJoueur)
@@ -170,10 +187,71 @@ namespace Metier
             return jonh.getAPiocher();
         }
 
-        public void setAPiocherCurrent(bool value)
+        public bool getVerifAPoserUneCarteCurrent()
         {
             Joueur jonh = getJoueur(_etape);
+
+            return jonh.getAPoserUneCarte();
+        }
+
+        public Carte getCarteByID(int idCarte)
+        {
+            return _deck.getCarteByID(idCarte);
+        }
+
+
+        public void poserUneCarte(Carte carte)
+        {
+
+            if (carte.GetType() == typeof(CarteMarchand))
+            {
+                poserUneCarteMarchand(carte);
+            }
+            else if (carte.GetType() == typeof(CarteAmiral))
+            {
+                Console.WriteLine("Carte amiral");
+            }
+            else if (carte.GetType() == typeof(CarteCapitaine))
+            {
+                Console.WriteLine("Carte capitaine");
+            }
+            else if (carte.GetType() == typeof(CartePirate))
+            {
+                Console.WriteLine("Carte pirate");
+            }
+
+            setJoueurCurrentAPoserUneCarte(true);
+        }
+
+        public void poserUneCarteMarchand(Carte carte)
+        {
+            Joueur jonh = getJoueurCurrent();
+            jonh.poserCarteMarchand(carte);
+            _joueurs.Remove(_etape);
+            _joueurs.Add(_etape, jonh);
+
+            _cartesTapis.Add(1, carte);
+        }
+
+        public Dictionary<int, Carte> getCartesTapis()
+        {
+            return _cartesTapis;
+        }
+
+        public void setJoueurCurrentAPiocher(bool value)
+        {
+            Joueur jonh = getJoueurCurrent();
             jonh.setAPiocher(value);
+            _joueurs.Remove(_etape);
+            _joueurs.Add(_etape, jonh);
+        }
+
+        public void setJoueurCurrentAPoserUneCarte(bool value)
+        {
+            Joueur jonh = getJoueurCurrent();
+            jonh.setAPoserUneCarte(value);
+            _joueurs.Remove(_etape);
+            _joueurs.Add(_etape, jonh);
         }
 
     }

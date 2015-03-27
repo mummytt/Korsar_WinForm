@@ -13,6 +13,7 @@ namespace Metier
         private int _nbCartesEnMain;
         private int _or;
         private bool _aPiocher;
+        private bool _aPoserUneCarte;
         private Dictionary<int, Carte> _cartesEnMain;
         
         public Joueur()
@@ -22,6 +23,8 @@ namespace Metier
             _nbCartesEnMain = 0;
             _or = 0;
             _cartesEnMain = new Dictionary<int, Carte>();
+            _aPiocher = false;
+            _aPoserUneCarte = false;
         }
 
         public Joueur(int id, string nom)
@@ -31,6 +34,8 @@ namespace Metier
             _nbCartesEnMain = 0;
             _or = 0;
             _cartesEnMain = new Dictionary<int, Carte>();
+            _aPiocher = false;
+            _aPoserUneCarte = false;
         }
 
         public int getOr()
@@ -69,13 +74,25 @@ namespace Metier
         {
             _cartesEnMain.Add(index, carte);
             _nbCartesEnMain += 1;
-            _aPiocher = true;
         }
 
-        public CarteMarchand poserCarteMarchand(int idCarte)
+        public void poserCarteMarchand(Carte carteM)
         {
+
             _nbCartesEnMain -= 1;
-            return new CarteMarchand();
+
+            int indexCarte = 0;
+
+            foreach(var carte in _cartesEnMain)
+            {
+                if (carte.Value.afficherNomCarte() == carteM.afficherNomCarte())
+                {
+                    indexCarte = carte.Key;
+                }
+            }
+
+            _cartesEnMain.Remove(indexCarte);
+
         }
 
         public CartePirate poserCartePirate(int idCarte)
@@ -105,7 +122,6 @@ namespace Metier
 
         public int getNombreCartesEnMain()
         {
-            _aPiocher = false;
             return _nbCartesEnMain;
         }
 
@@ -130,6 +146,16 @@ namespace Metier
         public void setAPiocher(bool value)
         {
             _aPiocher = value;
+        }
+
+        public bool getAPoserUneCarte()
+        {
+            return _aPoserUneCarte;
+        }
+
+        public void setAPoserUneCarte(bool value)
+        {
+            _aPoserUneCarte = value;
         }
 
     }
