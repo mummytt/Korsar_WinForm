@@ -20,12 +20,13 @@ namespace Metier
             _imageCarte = null;
         }
 
-        public CarteAmiral(int id, string nom, int attaque, Bitmap image)
+        public CarteAmiral(int id, string nom, int attaque, Bitmap image, Bitmap imageMin)
         {
             _idCarte = id;
             _nomCarte = nom;
             _valeurAttaque = attaque;
             _imageCarte = image;
+            _imageCarteMin = imageMin;
         }
 
         public int getAttaque()

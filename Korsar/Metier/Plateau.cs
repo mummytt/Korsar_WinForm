@@ -11,7 +11,15 @@ namespace Metier
     {
         private Deck _deck;
         private Dictionary<int, Joueur> _joueurs;
-        private Dictionary<int, Carte> _cartesTapis;
+        private Dictionary<int, Carte> _cartesTapis_etape_1;
+        private Dictionary<int, Carte> _cartesTapis_etape_2;
+        private Dictionary<int, Carte> _cartesTapis_etape_3;
+        private Dictionary<int, Carte> _cartesTapis_etape_4;
+
+        private Dictionary<int, int> _labelsJoueurs_etape_1;
+        private Dictionary<int, int> _labelsJoueurs_etape_2;
+        private Dictionary<int, int> _labelsJoueurs_etape_3;
+        private Dictionary<int, int> _labelsJoueurs_etape_4;
         private int _tour;
         private int _etape;
 
@@ -28,7 +36,16 @@ namespace Metier
             _joueurs.Add(3, j3);
             _joueurs.Add(4, j4);
 
-            _cartesTapis = new Dictionary<int, Carte>();
+            _cartesTapis_etape_1 = new Dictionary<int, Carte>();
+            _cartesTapis_etape_2 = new Dictionary<int, Carte>();
+            _cartesTapis_etape_3 = new Dictionary<int, Carte>();
+            _cartesTapis_etape_4 = new Dictionary<int, Carte>();
+
+            _labelsJoueurs_etape_1 = new Dictionary<int, int>();
+            _labelsJoueurs_etape_2 = new Dictionary<int, int>();
+            _labelsJoueurs_etape_3 = new Dictionary<int, int>();
+            _labelsJoueurs_etape_4 = new Dictionary<int, int>();
+
             _deck = new Deck();
             _deck.melangerCartes();
 
@@ -99,24 +116,75 @@ namespace Metier
             setJoueurCurrentAPoserUneCarte(false);
             setJoueurCurrentAPiocher(false);
 
-            Dictionary<int, Carte> newCartes = new Dictionary<int, Carte>();
+            Dictionary<int, Carte> newCartes_1 = new Dictionary<int, Carte>();
+            Dictionary<int, Carte> newCartes_2 = new Dictionary<int, Carte>();
+            Dictionary<int, Carte> newCartes_3 = new Dictionary<int, Carte>();
+            Dictionary<int, Carte> newCartes_4 = new Dictionary<int, Carte>();
 
-            foreach (var carte in _cartesTapis)
+            foreach (var carte in _cartesTapis_etape_1)
             {
-                if(carte.Key == 4)
-                {
-                    //Vérif bateau gagné ou pas
-                    newCartes.Add(1, carte.Value);
-                }
-                else
-                {
-                    newCartes.Add(carte.Key + 1, carte.Value);
-                }
-                
+                newCartes_2.Add(carte.Key, carte.Value);
             }
 
-            _cartesTapis = newCartes;
+            foreach (var carte in _cartesTapis_etape_2)
+            {
+                newCartes_3.Add(carte.Key, carte.Value);
+            }
 
+            foreach (var carte in _cartesTapis_etape_3)
+            {
+                newCartes_4.Add(carte.Key, carte.Value);
+            }
+
+            foreach (var carte in _cartesTapis_etape_4)
+            {
+                //newCartes_1.Add(carte.Key, carte.Value);
+
+                foreach(var item in _labelsJoueurs_etape_4)
+                {
+                    if(item.Key == carte.Value.getIdCarte())
+                    {
+                        CarteMarchand carteM = (CarteMarchand)carte.Value;
+                        setOrJoueur(carteM.getOr(), item.Value);
+                    }
+                }
+            }
+
+            _cartesTapis_etape_1 = newCartes_1;
+            _cartesTapis_etape_2 = newCartes_2;
+            _cartesTapis_etape_3 = newCartes_3;
+            _cartesTapis_etape_4 = newCartes_4;
+
+
+            Dictionary<int, int> newLabels_1 = new Dictionary<int, int>();
+            Dictionary<int, int> newLabels_2 = new Dictionary<int, int>();
+            Dictionary<int, int> newLabels_3 = new Dictionary<int, int>();
+            Dictionary<int, int> newLabels_4 = new Dictionary<int, int>();
+
+            foreach (var label in _labelsJoueurs_etape_1)
+            {
+                newLabels_2.Add(label.Key, label.Value);
+            }
+
+            foreach (var label in _labelsJoueurs_etape_2)
+            {
+                newLabels_3.Add(label.Key, label.Value);
+            }
+
+            foreach (var label in _labelsJoueurs_etape_3)
+            {
+                newLabels_4.Add(label.Key, label.Value);
+            }
+
+            foreach (var label in _labelsJoueurs_etape_4)
+            {
+                //newLabels_1.Add(label.Key, label.Value);
+            }
+
+            _labelsJoueurs_etape_1 = newLabels_1;
+            _labelsJoueurs_etape_2 = newLabels_2;
+            _labelsJoueurs_etape_3 = newLabels_3;
+            _labelsJoueurs_etape_4 = newLabels_4;
 
         }
 
@@ -135,9 +203,14 @@ namespace Metier
             return getJoueur(idJoueur).getNom();
         }
 
+        public string getNomJoueurCurrent()
+        {
+            return getJoueur(_etape).getNom();
+        }
+
         public void setDonnerCarteAJoueur(int idJoueur)
         {
-            Joueur jonh = getJoueur(idJoueur); 
+            Joueur jonh = getJoueur(idJoueur);
             Carte carte = _deck.piocher();
             jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
             _joueurs.Remove(idJoueur);
@@ -202,6 +275,8 @@ namespace Metier
 
         public void poserUneCarte(Carte carte)
         {
+            _cartesTapis_etape_1.Add(_cartesTapis_etape_1.Count + 1, carte);
+            _labelsJoueurs_etape_1.Add(carte.getIdCarte(), _etape);
 
             if (carte.GetType() == typeof(CarteMarchand))
             {
@@ -229,13 +304,66 @@ namespace Metier
             jonh.poserCarteMarchand(carte);
             _joueurs.Remove(_etape);
             _joueurs.Add(_etape, jonh);
-
-            _cartesTapis.Add(1, carte);
         }
 
-        public Dictionary<int, Carte> getCartesTapis()
+        public Dictionary<int, Carte> getCartesTapis(int etape)
         {
-            return _cartesTapis;
+            if(etape == 1)
+            {
+                return _cartesTapis_etape_1;
+            }
+            else if (etape == 2)
+            {
+                return _cartesTapis_etape_2;
+            }
+            else if (etape == 3)
+            {
+                return _cartesTapis_etape_3;
+            }
+            else
+            {
+                return _cartesTapis_etape_4;
+            }
+            
+        }
+
+        public string getLabelJoueurCarteTapis(int IDCarte)
+        {
+            string nom = "";
+
+            foreach(var label in _labelsJoueurs_etape_1)
+            {
+                if(label.Key == IDCarte)
+                {
+                    return getNomJoueur(label.Value);
+                }
+            }
+
+            foreach (var label in _labelsJoueurs_etape_2)
+            {
+                if (label.Key == IDCarte)
+                {
+                    return getNomJoueur(label.Value);
+                }
+            }
+
+            foreach (var label in _labelsJoueurs_etape_3)
+            {
+                if (label.Key == IDCarte)
+                {
+                    return getNomJoueur(label.Value);
+                }
+            }
+
+            foreach (var label in _labelsJoueurs_etape_4)
+            {
+                if (label.Key == IDCarte)
+                {
+                    return getNomJoueur(label.Value);
+                }
+            }
+
+            return nom;
         }
 
         public void setJoueurCurrentAPiocher(bool value)
@@ -252,6 +380,16 @@ namespace Metier
             jonh.setAPoserUneCarte(value);
             _joueurs.Remove(_etape);
             _joueurs.Add(_etape, jonh);
+        }
+
+        public bool getPeutPiocher()
+        {
+            if(_deck.getNombreCartes() != 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

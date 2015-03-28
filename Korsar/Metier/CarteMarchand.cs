@@ -20,12 +20,18 @@ namespace Metier
             _imageCarte = null;
         }
 
-        public CarteMarchand(int id, string nom, int or, Bitmap image)
+        public CarteMarchand(int id, string nom, int or, Bitmap image, Bitmap imageMin)
         {
             _idCarte = id;
             _nomCarte = nom;
             _valeurOr = or;
             _imageCarte = image;
+            _imageCarteMin = imageMin;
+        }
+
+        public int getOr()
+        {
+            return _valeurOr;
         }
     }
 }

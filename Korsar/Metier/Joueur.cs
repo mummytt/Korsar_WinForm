@@ -85,7 +85,7 @@ namespace Metier
 
             foreach(var carte in _cartesEnMain)
             {
-                if (carte.Value.afficherNomCarte() == carteM.afficherNomCarte())
+                if (carte.Value.getIdCarte() == carteM.getIdCarte())
                 {
                     indexCarte = carte.Key;
                 }

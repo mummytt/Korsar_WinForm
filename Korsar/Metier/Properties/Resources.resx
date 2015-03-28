@@ -121,86 +121,170 @@
   <data name="carte_amiral" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_amiral.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_amiral_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_amiral_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_capitaine_bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_capitaine_bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_capitaine_bleu_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_capitaine_bleu_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_capitaine_jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_capitaine_jaune.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_capitaine_jaune_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_capitaine_jaune_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_capitaine_rouge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_capitaine_rouge.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_capitaine_rouge_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_capitaine_rouge_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_capitaine_vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_capitaine_vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_capitaine_vert_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_capitaine_vert_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_marchand_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_marchand_2_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_2_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_marchand_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_marchand_3_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_3_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_marchand_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_marchand_4_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_4_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_marchand_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_marchand_5_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_5_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_marchand_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_marchand_6_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_6_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_marchand_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_marchand_7_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_7_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_marchand_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_marchand_8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_marchand_8_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_marchand_8_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_1_bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_1_bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_1_bleu_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_1_bleu_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_1_jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_1_jaune.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_1_jaune_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_1_jaune_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_1_rouge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_1_rouge.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_1_rouge_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_1_rouge_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_1_vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_1_vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_1_vert_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_1_vert_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_2_bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_2_bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_2_bleu_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_2_bleu_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_2_jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_2_jaune.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_2_jaune_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_2_jaune_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_2_rouge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_2_rouge.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_2_rouge_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_2_rouge_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_2_vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_2_vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_2_vert_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_2_vert_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_3_bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_3_bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_3_bleu_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_3_bleu_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_3_jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_3_jaune.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_3_jaune_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_3_jaune_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_3_rouge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_3_rouge.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_3_rouge_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_3_rouge_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_3_vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_3_vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_3_vert_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_3_vert_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_4_bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_4_bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_4_bleu_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_4_bleu_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_4_jaune" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_4_jaune.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_4_jaune_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_4_jaune_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="carte_pirate_4_rouge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_4_rouge.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="carte_pirate_4_rouge_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_4_rouge_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="carte_pirate_4_vert" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\carte_pirate_4_vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carte_pirate_4_vert_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ressources\carte_pirate_4_vert_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ressources\dos.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

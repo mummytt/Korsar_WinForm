@@ -73,9 +73,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_amiral_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_amiral_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_capitaine_bleu {
             get {
                 object obj = ResourceManager.GetObject("carte_capitaine_bleu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_capitaine_bleu_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_capitaine_bleu_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +113,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_capitaine_jaune_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_capitaine_jaune_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_capitaine_rouge {
             get {
                 object obj = ResourceManager.GetObject("carte_capitaine_rouge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_capitaine_rouge_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_capitaine_rouge_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +153,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_capitaine_vert_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_capitaine_vert_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_marchand_2 {
             get {
                 object obj = ResourceManager.GetObject("carte_marchand_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_2_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_2_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +193,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_3_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_3_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_marchand_4 {
             get {
                 object obj = ResourceManager.GetObject("carte_marchand_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_4_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_4_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +233,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_5_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_5_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_marchand_6 {
             get {
                 object obj = ResourceManager.GetObject("carte_marchand_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_6_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_6_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +273,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_7_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_7_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_marchand_8 {
             get {
                 object obj = ResourceManager.GetObject("carte_marchand_8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_marchand_8_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_marchand_8_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +313,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_1_bleu_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_1_bleu_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_1_jaune {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_1_jaune", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_1_jaune_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_1_jaune_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +353,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_1_rouge_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_1_rouge_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_1_vert {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_1_vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_1_vert_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_1_vert_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +393,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_2_bleu_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_2_bleu_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_2_jaune {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_2_jaune", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_2_jaune_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_2_jaune_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +433,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_2_rouge_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_2_rouge_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_2_vert {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_2_vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_2_vert_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_2_vert_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +473,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_3_bleu_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_3_bleu_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_3_jaune {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_3_jaune", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_3_jaune_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_3_jaune_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +513,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_3_rouge_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_3_rouge_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_3_vert {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_3_vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_3_vert_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_3_vert_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +553,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_4_bleu_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_4_bleu_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_4_jaune {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_4_jaune", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_4_jaune_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_4_jaune_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +593,29 @@ namespace Metier.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_4_rouge_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_4_rouge_min", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carte_pirate_4_vert {
             get {
                 object obj = ResourceManager.GetObject("carte_pirate_4_vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carte_pirate_4_vert_min {
+            get {
+                object obj = ResourceManager.GetObject("carte_pirate_4_vert_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

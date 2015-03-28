@@ -20,13 +20,14 @@ namespace Metier
             _imageCarte = null;
         }
 
-        public CarteCapitaine(int id, string nom, string couleur, int attaque, Bitmap image)
+        public CarteCapitaine(int id, string nom, string couleur, int attaque, Bitmap image, Bitmap imageMin)
         {
             _idCarte = id;
             _nomCarte = nom;
             _couleur = couleur;
             _valeurAttaque = attaque;
             _imageCarte = image;
+            _imageCarteMin = imageMin;
         }
 
         public int getAttaque()
