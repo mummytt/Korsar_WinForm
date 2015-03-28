@@ -58,8 +58,6 @@ namespace Metier
         {
             Joueur jonh = getJoueur(idJoueur); 
             jonh.setOr(or);
-            _joueurs.Remove(idJoueur);
-            _joueurs.Add(idJoueur, jonh);
         }
 
         public int getOrJoueurCurrent()
@@ -140,9 +138,9 @@ namespace Metier
             {
                 //newCartes_1.Add(carte.Key, carte.Value);
 
-                foreach(var item in _labelsJoueurs_etape_4)
+                foreach (var item in _labelsJoueurs_etape_4)
                 {
-                    if(item.Key == carte.Value.getIdCarte())
+                    if (item.Key == carte.Value.getIdCarte())
                     {
                         CarteMarchand carteM = (CarteMarchand)carte.Value;
                         setOrJoueur(carteM.getOr(), item.Value);
@@ -213,8 +211,6 @@ namespace Metier
             Joueur jonh = getJoueur(idJoueur);
             Carte carte = _deck.piocher();
             jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
-            _joueurs.Remove(idJoueur);
-            _joueurs.Add(idJoueur, jonh);
         }
 
         
@@ -223,8 +219,6 @@ namespace Metier
             Joueur jonh = getJoueurCurrent();
             Carte carte = _deck.piocher();
             jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
-            _joueurs.Remove(_etape);
-            _joueurs.Add(_etape, jonh);
         }
 
         public bool getVerifierGainMarchant(int idJoueur)
@@ -275,11 +269,11 @@ namespace Metier
 
         public void poserUneCarte(Carte carte)
         {
-            _cartesTapis_etape_1.Add(_cartesTapis_etape_1.Count + 1, carte);
-            _labelsJoueurs_etape_1.Add(carte.getIdCarte(), _etape);
-
+            
             if (carte.GetType() == typeof(CarteMarchand))
             {
+                _cartesTapis_etape_1.Add(_cartesTapis_etape_1.Count + 1, carte);
+                _labelsJoueurs_etape_1.Add(carte.getIdCarte(), _etape);
                 poserUneCarteMarchand(carte);
             }
             else if (carte.GetType() == typeof(CarteAmiral))
@@ -296,14 +290,22 @@ namespace Metier
             }
 
             setJoueurCurrentAPoserUneCarte(true);
+
+            Joueur jonh = getJoueurCurrent();
+            Dictionary<int, Carte> newCartesEnMain = new Dictionary<int, Carte>();
+
+            foreach (var carteMain in jonh.getMainJoueur())
+            {
+                newCartesEnMain.Add(carteMain.Key, carteMain.Value);
+            }
+
+            jonh.setMainJoueur(newCartesEnMain);
         }
 
         public void poserUneCarteMarchand(Carte carte)
         {
             Joueur jonh = getJoueurCurrent();
             jonh.poserCarteMarchand(carte);
-            _joueurs.Remove(_etape);
-            _joueurs.Add(_etape, jonh);
         }
 
         public Dictionary<int, Carte> getCartesTapis(int etape)
@@ -370,16 +372,12 @@ namespace Metier
         {
             Joueur jonh = getJoueurCurrent();
             jonh.setAPiocher(value);
-            _joueurs.Remove(_etape);
-            _joueurs.Add(_etape, jonh);
         }
 
         public void setJoueurCurrentAPoserUneCarte(bool value)
         {
             Joueur jonh = getJoueurCurrent();
             jonh.setAPoserUneCarte(value);
-            _joueurs.Remove(_etape);
-            _joueurs.Add(_etape, jonh);
         }
 
         public bool getPeutPiocher()

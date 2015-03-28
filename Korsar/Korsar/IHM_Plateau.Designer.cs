@@ -138,7 +138,7 @@
             // l_or
             // 
             this.l_or.AutoSize = true;
-            this.l_or.Location = new System.Drawing.Point(525, 28);
+            this.l_or.Location = new System.Drawing.Point(696, 28);
             this.l_or.Name = "l_or";
             this.l_or.Size = new System.Drawing.Size(0, 13);
             this.l_or.TabIndex = 16;
@@ -146,7 +146,7 @@
             // l_presentation1
             // 
             this.l_presentation1.AutoSize = true;
-            this.l_presentation1.Location = new System.Drawing.Point(466, 28);
+            this.l_presentation1.Location = new System.Drawing.Point(637, 28);
             this.l_presentation1.Name = "l_presentation1";
             this.l_presentation1.Size = new System.Drawing.Size(10, 13);
             this.l_presentation1.TabIndex = 17;
@@ -155,7 +155,7 @@
             // l_tour
             // 
             this.l_tour.AutoSize = true;
-            this.l_tour.Location = new System.Drawing.Point(389, 28);
+            this.l_tour.Location = new System.Drawing.Point(560, 28);
             this.l_tour.Name = "l_tour";
             this.l_tour.Size = new System.Drawing.Size(0, 13);
             this.l_tour.TabIndex = 4;

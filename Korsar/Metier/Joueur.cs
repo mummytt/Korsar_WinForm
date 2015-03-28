@@ -70,6 +70,11 @@ namespace Metier
             return _cartesEnMain;
         }
 
+        public void setMainJoueur(Dictionary<int, Carte> main)
+        {
+            _cartesEnMain = main;
+        }
+
         public void ajouterMainJoueur(int index, Carte carte)
         {
             _cartesEnMain.Add(index, carte);
@@ -111,12 +116,6 @@ namespace Metier
         {
             _nbCartesEnMain -= 1;
             return new CarteAmiral();
-        }
-
-        public Carte poserCarte(int idCarte)
-        {
-            _nbCartesEnMain -= 1;
-            return new Carte();
         }
         
 
