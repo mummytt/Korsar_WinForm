@@ -24,11 +24,12 @@ namespace Korsar
         int _décalageCarte = 0;
         int _décalageCarteTapis = 0;
         int _décalageCarteTapisBas = 0;
+
         Dictionary<int, PictureBox> _mainImageJoueur;
-        Dictionary<int, PictureBox> _tapisImage_etape_1;
-        Dictionary<int, PictureBox> _tapisImage_etape_2;
-        Dictionary<int, PictureBox> _tapisImage_etape_3;
-        Dictionary<int, PictureBox> _tapisImage_etape_4;
+        Dictionary<int, PictureBox> _imagesCartesMarchands_etape_1;
+        Dictionary<int, PictureBox> _imagesCartesMarchands_etape_2;
+        Dictionary<int, PictureBox> _imagesCartesMarchands_etape_3;
+        Dictionary<int, PictureBox> _imagesCartesMarchands_etape_4;
 
         Dictionary<int, Label> _tapisLabelJoueur_etape_1;
         Dictionary<int, Label> _tapisLabelJoueur_etape_2;
@@ -40,10 +41,12 @@ namespace Korsar
             InitializeComponent();
             plateau = new Plateau(j1, j2, j3, j4);
             _mainImageJoueur = new Dictionary<int, PictureBox>();
-            _tapisImage_etape_1 = new Dictionary<int, PictureBox>();
-            _tapisImage_etape_2 = new Dictionary<int, PictureBox>();
-            _tapisImage_etape_3 = new Dictionary<int, PictureBox>();
-            _tapisImage_etape_4 = new Dictionary<int, PictureBox>();
+
+            _imagesCartesMarchands_etape_1 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_2 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_3 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_4 = new Dictionary<int, PictureBox>();
+
             _tapisLabelJoueur_etape_1 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_2 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_3 = new Dictionary<int, Label>();
@@ -116,7 +119,6 @@ namespace Korsar
                     pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
                 }
 
-
                 _mainImageJoueur.Add(i, pb);
 
                 i++;
@@ -135,57 +137,64 @@ namespace Korsar
         public void afficherTapis()
         {
 
-            for(int i = 1; i <= 4; i++)
+            for (int i = 1; i <= 4; i++)
             {
                 Dictionary<int, Carte> cartesTapis = plateau.getCartesTapis(i);
                 int x = 0;
                 _décalageCarteTapis = 0;
 
-                if(i == 1)
+                foreach (var carte in cartesTapis)
                 {
-                    
-                    foreach (var carte in cartesTapis)
+                    PictureBox pb = new PictureBox();
+                    pb.BorderStyle = BorderStyle.FixedSingle;
+                    pb.Tag = carte.Value.getIdCarte();
+                    pb.Image = carte.Value.getImageMinCarte();
+                    pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
+                    pb.Click += new System.EventHandler(pb_carteMarchandTapis_Click);
+
+                    Label labelJoueur = new Label();
+                    labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
+
+                    if (x >= 3)
                     {
-                        if(x >= 3)
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapisBas, 100 + _tailleCarteHauteur);
-                            _tapisImage_etape_1.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapisBas, 80 + _tailleCarteHauteur);
-                            _tapisLabelJoueur_etape_1.Add(carte.Value.getIdCarte(), labelJoueur);
-
-                            _décalageCarteTapisBas += 2 * _décalage_min;
-                        }
-                        else
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapis, 50);
-                            _tapisImage_etape_1.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapis, 30);
-                            _tapisLabelJoueur_etape_1.Add(carte.Value.getIdCarte(), labelJoueur);
-
-                            _décalageCarteTapis += 2 * _décalage_min;
-                        }
-
-                        x++;
-                        
+                        pb.Location = new Point(_décalage_min + _décalageCarteTapisBas, 100 + _tailleCarteHauteur);
+                        labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapisBas, 80 + _tailleCarteHauteur);
+                        _décalageCarteTapisBas += 2 * _décalage_min;
+                    }
+                    else
+                    {
+                        pb.Location = new Point(_décalage_min + _décalageCarteTapis, 50);
+                        labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapis, 30);
+                        _décalageCarteTapis += 2 * _décalage_min;
                     }
 
-                    foreach (var item in _tapisImage_etape_1)
+                    x++;
+
+                    if (i == 1)
+                    {
+                        _imagesCartesMarchands_etape_1.Add(carte.Key, pb);
+                        _tapisLabelJoueur_etape_1.Add(carte.Value.getIdCarte(), labelJoueur);
+                    }
+                    else if (i == 2)
+                    {
+                        _imagesCartesMarchands_etape_2.Add(carte.Key, pb);
+                        _tapisLabelJoueur_etape_2.Add(carte.Value.getIdCarte(), labelJoueur);
+                    }
+                    else if (i == 3)
+                    {
+                        _imagesCartesMarchands_etape_3.Add(carte.Key, pb);
+                        _tapisLabelJoueur_etape_3.Add(carte.Value.getIdCarte(), labelJoueur);
+                    }
+                    else
+                    {
+                        _imagesCartesMarchands_etape_4.Add(carte.Key, pb);
+                        _tapisLabelJoueur_etape_4.Add(carte.Value.getIdCarte(), labelJoueur);
+                    }
+                }
+
+                if (i == 1)
+                {
+                    foreach (var item in _imagesCartesMarchands_etape_1)
                     {
                         gb_etape_1.Controls.Add(item.Value);
                     }
@@ -194,48 +203,10 @@ namespace Korsar
                     {
                         gb_etape_1.Controls.Add(item.Value);
                     }
-
                 }
                 else if (i == 2)
                 {
-                    foreach (var carte in cartesTapis)
-                    {
-                        if(x >= 3)
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapisBas, 50);
-                            _tapisImage_etape_2.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapisBas, 30);
-                            _tapisLabelJoueur_etape_2.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapisBas += 2 * _décalage_min;
-                        }
-                        else
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapis, 50);
-                            _tapisImage_etape_2.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapis, 30);
-                            _tapisLabelJoueur_etape_2.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapis += 2 * _décalage_min;
-                        }
-                        x++;
-                    }
-
-                    foreach (var item in _tapisImage_etape_2)
+                    foreach (var item in _imagesCartesMarchands_etape_2)
                     {
                         gb_etape_2.Controls.Add(item.Value);
                     }
@@ -247,46 +218,7 @@ namespace Korsar
                 }
                 else if (i == 3)
                 {
-                    foreach (var carte in cartesTapis)
-                    {
-                        if(x >= 3)
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapisBas, 50);
-                            _tapisImage_etape_3.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapisBas, 30);
-                            _tapisLabelJoueur_etape_3.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapisBas += 2 * _décalage_min;
-                        }
-                        else
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapis, 50);
-                            _tapisImage_etape_3.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapis, 30);
-                            _tapisLabelJoueur_etape_3.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapis += 2 * _décalage_min;
-                        }
-
-                        x++;
-                        
-                    }
-
-                    foreach (var item in _tapisImage_etape_3)
+                    foreach (var item in _imagesCartesMarchands_etape_3)
                     {
                         gb_etape_3.Controls.Add(item.Value);
                     }
@@ -298,46 +230,7 @@ namespace Korsar
                 }
                 else
                 {
-                    foreach (var carte in cartesTapis)
-                    {
-                        if(x >= 3)
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapisBas, 50);
-                            _tapisImage_etape_4.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapisBas, 30);
-                            _tapisLabelJoueur_etape_4.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapisBas += 2 * _décalage_min;
-                        }
-                        else
-                        {
-                            PictureBox pb = new PictureBox();
-                            pb.BorderStyle = BorderStyle.FixedSingle;
-                            pb.Tag = carte.Value.getIdCarte();
-                            pb.Image = carte.Value.getImageMinCarte();
-                            pb.Size = new Size(_tailleCarteLargeurMin, _tailleCarteHauteur);
-                            pb.Location = new Point(_décalage_min + _décalageCarteTapis, 50);
-                            _tapisImage_etape_4.Add(carte.Key, pb);
-
-                            Label labelJoueur = new Label();
-                            labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
-                            labelJoueur.Location = new Point(_décalage_min + _décalageCarteTapis, 30);
-                            _tapisLabelJoueur_etape_4.Add(carte.Key, labelJoueur);
-                            _décalageCarteTapis += 2 * _décalage_min;
-                        }
-
-                        x++;
-                        
-                    }
-
-                    foreach (var item in _tapisImage_etape_4)
+                    foreach (var item in _imagesCartesMarchands_etape_4)
                     {
                         gb_etape_4.Controls.Add(item.Value);
                     }
@@ -358,7 +251,7 @@ namespace Korsar
             afficherMainJoueur();
             changeImageEtape();
 
-            if(!plateau.getPeutPiocher())
+            if (!plateau.getPeutPiocher_Pioche())
             {
                 pb_pioche.Image = null;
             }
@@ -394,122 +287,64 @@ namespace Korsar
 
         public void nettoyerPlateau()
         {
-            Dictionary<int, int> KeyMainImageJoueur = new Dictionary<int, int>();
 
             foreach (var item in _mainImageJoueur)
             {
-                KeyMainImageJoueur.Add(item.Key, item.Key);
                 Controls.Remove(item.Value);
             }
 
-            foreach(var item in KeyMainImageJoueur)
+            _mainImageJoueur = new Dictionary<int, PictureBox>();
+
+
+            foreach (var item in _imagesCartesMarchands_etape_1)
             {
-                _mainImageJoueur.Remove(item.Value);
-            }
-
-            Dictionary<int, int> KeyTapisImage;
-            Dictionary<int, int> KeyLabelJoueur;
-
-            KeyTapisImage = new Dictionary<int, int>();
-            KeyLabelJoueur = new Dictionary<int, int>();
-
-            foreach (var item in _tapisImage_etape_1)
-            {
-                KeyTapisImage.Add(item.Key, item.Key);
                 gb_etape_1.Controls.Remove(item.Value);
             }
 
             foreach (var item in _tapisLabelJoueur_etape_1)
             {
-                KeyLabelJoueur.Add(item.Key, item.Key);
                 gb_etape_1.Controls.Remove(item.Value);
             }
 
-            foreach (var item in KeyTapisImage)
+            foreach (var item in _imagesCartesMarchands_etape_2)
             {
-                _tapisImage_etape_1.Remove(item.Value);
-            }
-
-            foreach(var item in KeyLabelJoueur)
-            {
-                _tapisLabelJoueur_etape_1.Remove(item.Value);
-            }
-
-            KeyTapisImage = new Dictionary<int, int>();
-            KeyLabelJoueur = new Dictionary<int, int>();
-
-            foreach (var item in _tapisImage_etape_2)
-            {
-                KeyTapisImage.Add(item.Key, item.Key);
                 gb_etape_2.Controls.Remove(item.Value);
             }
 
             foreach (var item in _tapisLabelJoueur_etape_2)
             {
-                KeyLabelJoueur.Add(item.Key, item.Key);
                 gb_etape_2.Controls.Remove(item.Value);
             }
 
-            foreach (var item in KeyTapisImage)
+            foreach (var item in _imagesCartesMarchands_etape_3)
             {
-                _tapisImage_etape_2.Remove(item.Value);
-            }
-
-            foreach (var item in KeyLabelJoueur)
-            {
-                _tapisLabelJoueur_etape_2.Remove(item.Value);
-            }
-
-            KeyTapisImage = new Dictionary<int, int>();
-            KeyLabelJoueur = new Dictionary<int, int>();
-
-            foreach (var item in _tapisImage_etape_3)
-            {
-                KeyTapisImage.Add(item.Key, item.Key);
                 gb_etape_3.Controls.Remove(item.Value);
             }
 
             foreach (var item in _tapisLabelJoueur_etape_3)
             {
-                KeyLabelJoueur.Add(item.Key, item.Key);
                 gb_etape_3.Controls.Remove(item.Value);
             }
 
-            foreach (var item in KeyTapisImage)
+            foreach (var item in _imagesCartesMarchands_etape_4)
             {
-                _tapisImage_etape_3.Remove(item.Value);
-            }
-
-            foreach (var item in KeyLabelJoueur)
-            {
-                _tapisLabelJoueur_etape_3.Remove(item.Value);
-            }
-
-            KeyTapisImage = new Dictionary<int, int>();
-            KeyLabelJoueur = new Dictionary<int, int>();
-
-            foreach (var item in _tapisImage_etape_4)
-            {
-                KeyTapisImage.Add(item.Key, item.Key);
                 gb_etape_4.Controls.Remove(item.Value);
             }
 
             foreach (var item in _tapisLabelJoueur_etape_4)
             {
-                KeyLabelJoueur.Add(item.Key, item.Key);
                 gb_etape_4.Controls.Remove(item.Value);
             }
 
-            foreach (var item in KeyTapisImage)
-            {
-                _tapisImage_etape_4.Remove(item.Value);
-            }
+            _imagesCartesMarchands_etape_1 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_2 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_3 = new Dictionary<int, PictureBox>();
+            _imagesCartesMarchands_etape_4 = new Dictionary<int, PictureBox>();
 
-            foreach (var item in KeyLabelJoueur)
-            {
-                _tapisLabelJoueur_etape_4.Remove(item.Value);
-            }
-
+            _tapisLabelJoueur_etape_1 = new Dictionary<int, Label>();
+            _tapisLabelJoueur_etape_2 = new Dictionary<int, Label>();
+            _tapisLabelJoueur_etape_3 = new Dictionary<int, Label>();
+            _tapisLabelJoueur_etape_4 = new Dictionary<int, Label>();
         }
 
         private void b_etape_Click(object sender, EventArgs e)
@@ -530,7 +365,7 @@ namespace Korsar
         
         private void pb_pioche_Click(object sender, EventArgs e)
         {
-            if(plateau.getPeutPiocher())
+            if(plateau.getPeutPiocher_Pioche())
             {
                 if (plateau.getVerifAPiocherCurrent() == false && plateau.getVerifAPoserUneCarteCurrent() == false)
                 {
@@ -545,7 +380,7 @@ namespace Korsar
 
         private void pb_carteMain_Click(object sender, EventArgs e)
         {
-            if(_tapisImage_etape_1.Count < 6)
+            if (_imagesCartesMarchands_etape_1.Count < 6)
             {
                 PictureBox pb = (PictureBox)sender;
                 int idCarte = 0;
@@ -571,7 +406,12 @@ namespace Korsar
                     }
                 }
             }
-                
+        }
+
+
+        private void pb_carteMarchandTapis_Click(object sender, EventArgs e)
+        {
+            //ATTAQUE
         }
 
     }

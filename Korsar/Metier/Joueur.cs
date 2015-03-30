@@ -55,7 +55,7 @@ namespace Metier
             _id = id;
         }
 
-        public void setOr(int or)
+        public void setAjoutOr(int or)
         {
             _or += or;
         }
@@ -81,42 +81,14 @@ namespace Metier
             _nbCartesEnMain += 1;
         }
 
-        public void poserCarteMarchand(Carte carteM)
-        {
-
-            _nbCartesEnMain -= 1;
-
-            int indexCarte = 0;
-
-            foreach(var carte in _cartesEnMain)
-            {
-                if (carte.Value.getIdCarte() == carteM.getIdCarte())
-                {
-                    indexCarte = carte.Key;
-                }
-            }
-
-            _cartesEnMain.Remove(indexCarte);
-
-        }
-
-        public CartePirate poserCartePirate(int idCarte)
+        public void poserCarte(Carte carte)
         {
             _nbCartesEnMain -= 1;
-            return new CartePirate();
+
+            var recup = _cartesEnMain.First(x => x.Value.getIdCarte() == carte.getIdCarte());
+            _cartesEnMain.Remove(recup.Key);
         }
 
-        public CarteCapitaine poserCarteCapitaine(int idCarte)
-        {
-            _nbCartesEnMain -= 1;
-            return new CarteCapitaine();
-        }
-
-        public CarteAmiral poserCarteAmiral(int idCarte)
-        {
-            _nbCartesEnMain -= 1;
-            return new CarteAmiral();
-        }
         
 
         public int getNombreCartesEnMain()
