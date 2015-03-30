@@ -153,6 +153,7 @@ namespace Metier
 
                     if(_attaquesEnCours.Count != 0)
                     {
+
                         foreach(var item2 in _attaquesEnCours)
                         {
                             if(item.Value == item2.Value)
@@ -163,6 +164,25 @@ namespace Metier
                         }
                     }
                 }
+
+                Dictionary<Carte, Carte> KeyAttaqueSuppr = new Dictionary<Carte, Carte>();
+
+                foreach(var item in _cartesMarchandsTapis_etape_4)
+                {
+                    foreach(var item2 in _attaquesEnCours)
+                    {
+                        if(item.Value == item2.Value)
+                        {
+                            KeyAttaqueSuppr.Add(item2.Key, item2.Key);
+                        }
+                    }
+                }
+
+                foreach(var item in KeyAttaqueSuppr)
+                {
+                    _attaquesEnCours.Remove(item.Key);
+                }
+
             }
             
             //Donner l'or du bateau au joueur
@@ -397,34 +417,91 @@ namespace Metier
 
             if (attaques_joueurs != null)
             {
-                var attaque_J1 = attaques_joueurs.First(x => x.Key == 1);
-                var attaque_J2 = attaques_joueurs.First(x => x.Key == 2);
-                var attaque_J3 = attaques_joueurs.First(x => x.Key == 3);
-                var attaque_J4 = attaques_joueurs.First(x => x.Key == 4);
+                var attaque_J1 = attaques_joueurs.Where(x => x.Key == 1);
+                var attaque_J2 = attaques_joueurs.Where(x => x.Key == 2);
+                var attaque_J3 = attaques_joueurs.Where(x => x.Key == 3);
+                var attaque_J4 = attaques_joueurs.Where(x => x.Key == 4);
 
-                string nom = "";
-                foreach (var attaque in attaques_joueurs)
+                int max_J1 = 0;
+                int max_J2 = 0;
+                int max_J3 = 0;
+                int max_J4 = 0;
+
+                foreach(var attaque in attaque_J1)
                 {
-                    foreach (var attaque2 in attaques_joueurs)
+                    if(attaque.Value > max_J1)
                     {
-                        if (attaque.Value != 0 && attaque.Key != attaque2.Key && attaque.Value == attaque2.Value)
-                        {
-                            if (nom.Contains(getNomJoueur(attaque.Key)) == false && nom.Contains(getNomJoueur(attaque2.Key)) == false)
-                            {
-                                nom += getNomJoueur(attaque.Key) + " - " + getNomJoueur(attaque2.Key);
-                            }
-                            else if (nom.Contains(getNomJoueur(attaque2.Key)) == true && nom.Contains(getNomJoueur(attaque.Key)) == false)
-                            {
-                                nom += " - " + getNomJoueur(attaque.Key);
-                            }
-                            else if (nom.Contains(getNomJoueur(attaque.Key)) == true && nom.Contains(getNomJoueur(attaque2.Key)) == false)
-                            {
-                                nom += " - " + getNomJoueur(attaque2.Key);
-                            }
-
-                        }
+                        max_J1 = attaque.Value;
                     }
                 }
+
+                foreach(var attaque in attaque_J2)
+                {
+                    if(attaque.Value > max_J2)
+                    {
+                        max_J2 = attaque.Value;
+                    }
+                }
+
+                foreach(var attaque in attaque_J3)
+                {
+                    if(attaque.Value > max_J3)
+                    {
+                        max_J3 = attaque.Value;
+                    }
+                }
+
+                foreach(var attaque in attaque_J4)
+                {
+                    if(attaque.Value > max_J4)
+                    {
+                        max_J4 = attaque.Value;
+                    }
+                }
+
+                string nom = "";
+
+                if (max_J1 == max_J2 && max_J2 > max_J3 && max_J2 > max_J4 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(2);
+                }
+                else if (max_J1 == max_J3 && max_J3 > max_J2 && max_J3 > max_J4 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(3);
+                }
+                else if (max_J1 == max_J4 && max_J4 > max_J2 && max_J4 > max_J3 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(4);
+                }
+                else if (max_J2 == max_J3 && max_J2 > max_J1 && max_J2 > max_J4 && max_J2 > 0)
+                {
+                    nom = getNomJoueur(2) + " - " + getNomJoueur(3);
+                }
+                else if (max_J3 == max_J4 && max_J3 > max_J2 && max_J3 > max_J1 && max_J3 > 0)
+                {
+                    nom = getNomJoueur(3) + " - " + getNomJoueur(4);
+                }
+                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J1 > max_J4 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3);
+                }
+                else if (max_J1 == max_J2 && max_J2 == max_J4 && max_J1 > max_J3 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(4);
+                }
+                else if (max_J1 == max_J3 && max_J3 == max_J4 && max_J1 > max_J2 && max_J1 > 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                }
+                else if (max_J2 == max_J3 && max_J3 == max_J4 && max_J2 > max_J1 && max_J1 > 2)
+                {
+                    nom = getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                }
+                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J3 == max_J4 && max_J1 != 0)
+                {
+                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                }
+
 
                 return nom;
             }
@@ -438,29 +515,66 @@ namespace Metier
 
             if(attaques_joueurs != null)
             {
-                var attaque_J1 = attaques_joueurs.First(x => x.Key == 1);
-                var attaque_J2 = attaques_joueurs.First(x => x.Key == 2);
-                var attaque_J3 = attaques_joueurs.First(x => x.Key == 3);
-                var attaque_J4 = attaques_joueurs.First(x => x.Key == 4);
+                var attaque_J1 = attaques_joueurs.Where(x => x.Key == 1);
+                var attaque_J2 = attaques_joueurs.Where(x => x.Key == 2);
+                var attaque_J3 = attaques_joueurs.Where(x => x.Key == 3);
+                var attaque_J4 = attaques_joueurs.Where(x => x.Key == 4);
 
-                if (attaque_J1.Value > attaque_J2.Value && attaque_J1.Value > attaque_J3.Value && attaque_J1.Value > attaque_J3.Value)
+                int max_J1 = 0;
+                int max_J2 = 0;
+                int max_J3 = 0;
+                int max_J4 = 0;
+
+                foreach (var attaque in attaque_J1)
+                {
+                    if (attaque.Value > max_J1)
+                    {
+                        max_J1 = attaque.Value;
+                    }
+                }
+
+                foreach (var attaque in attaque_J2)
+                {
+                    if (attaque.Value > max_J2)
+                    {
+                        max_J2 = attaque.Value;
+                    }
+                }
+
+                foreach (var attaque in attaque_J3)
+                {
+                    if (attaque.Value > max_J3)
+                    {
+                        max_J3 = attaque.Value;
+                    }
+                }
+
+                foreach (var attaque in attaque_J4)
+                {
+                    if (attaque.Value > max_J4)
+                    {
+                        max_J4 = attaque.Value;
+                    }
+                }
+
+                if (max_J1 > max_J2 && max_J1 > max_J3 && max_J1 > max_J4)
                 {
                     return 1;
                 }
-                else if (attaque_J2.Value > attaque_J3.Value && attaque_J2.Value > attaque_J4.Value && attaque_J2.Value > attaque_J1.Value)
+                else if (max_J2 > max_J3 && max_J2 > max_J4 && max_J2 > max_J1)
                 {
                     return 2;
                 }
-                else if (attaque_J3.Value > attaque_J4.Value && attaque_J3.Value > attaque_J1.Value && attaque_J3.Value > attaque_J2.Value)
+                else if (max_J3 > max_J4 && max_J3 > max_J1 && max_J3 > max_J2)
                 {
                     return 3;
                 }
-                else if (attaque_J4.Value > attaque_J1.Value && attaque_J4.Value > attaque_J2.Value && attaque_J4.Value > attaque_J3.Value)
+                else if (max_J4 > max_J1 && max_J4 > max_J2 && max_J4 > max_J3)
                 {
                     return 4;
                 }
 
-                if(attaque_J1.Value == attaque_J2.Value || attaque_J1.Value == attaque_J3.Value || attaque_J1.Value == attaque_J4.Value || attaque_J2.Value == attaque_J3.Value || attaque_J2.Value == attaque_J4.Value || attaque_J3.Value == attaque_J4.Value)
+                if ((max_J1 == max_J2 && max_J1 > max_J3 && max_J1 > max_J4) || (max_J1 == max_J3 && max_J1 > max_J2 && max_J1 > max_J4) || (max_J1 == max_J4 && max_J1 > max_J2 && max_J1 > max_J3) || (max_J2 == max_J3 && max_J2 > max_J1 && max_J2 > max_J4) || (max_J2 == max_J4 && max_J2 > max_J1 && max_J2 > max_J3) || (max_J3 == max_J4 && max_J3 > max_J1 && max_J3 > max_J2) || (max_J1 == max_J2 && max_J1 == max_J3 && max_J3 > max_J4) || (max_J1 == max_J2 && max_J1 == max_J4 && max_J4 > max_J3) || (max_J1 == max_J3 && max_J1 == max_J4 && max_J3 > max_J2) || (max_J2 == max_J3 && max_J2 == max_J4 && max_J2 > max_J1) || (max_J1 == max_J2 && max_J2 == max_J3 && max_J3 == max_J4 && max_J1 > 0))
                 {
                     return -1;
                 }
@@ -545,6 +659,7 @@ namespace Metier
         {
             return _estEnTrainDAttaquer;
         }
+
 
         public void setEstEnTrainDattaquer(bool value)
         {

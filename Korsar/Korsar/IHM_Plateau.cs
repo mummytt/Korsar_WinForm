@@ -360,10 +360,12 @@ namespace Korsar
         {
             if (plateau.getVerifAPiocherCurrent() == true || plateau.getVerifAPoserUneCarteCurrent() == true)
             {
-                nettoyerPlateau();
-                plateau.setEtapeSuivante();
-                chargementPlateau();
-                
+                if(plateau.getEstEnTrainDattaquer() == false)
+                {
+                    nettoyerPlateau();
+                    plateau.setEtapeSuivante();
+                    chargementPlateau();
+                }
             }
            
         }
@@ -423,8 +425,9 @@ namespace Korsar
                 var mainJoueur_1 = plateau.getCartesTapis(1);
                 int maitre = plateau.maitreDeLaCarte((int)pb.Tag);
 
+                string noms = plateau.getNomsEgalite(marchandAttaque.getIdCarte());
 
-                if (maitre == plateau.getEtape() || maitre == -1)
+                if (maitre == plateau.getEtape() || noms.Contains(plateau.getNomJoueurCurrent()) == true)
                 {   
                     if (pb.Name == "etape_2")
                     {
