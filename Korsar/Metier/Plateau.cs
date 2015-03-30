@@ -16,7 +16,19 @@ namespace Metier
         private Dictionary<int, Carte> _cartesMarchandsTapis_etape_3;
         private Dictionary<int, Carte> _cartesMarchandsTapis_etape_4;
 
-        private Dictionary<int, int> _idJoueurs_idCarteMarchands;
+        private Dictionary<int, Carte> _cartesPiratesTapis_etape_1;
+        private Dictionary<int, Carte> _cartesPiratesTapis_etape_2;
+        private Dictionary<int, Carte> _cartesPiratesTapis_etape_3;
+        private Dictionary<int, Carte> _cartesPiratesTapis_etape_4;
+
+
+        private Dictionary<Carte, Carte> _attaquesEnCours;
+
+        private Dictionary<int, int> _idCartesMarchands_idJoueurs;
+        private Dictionary<int, int> _idCartesPirates_idJoueurs;
+
+        private bool _estEnTrainDAttaquer;
+
         private int _tour;
         private int _etape;
 
@@ -38,7 +50,17 @@ namespace Metier
             _cartesMarchandsTapis_etape_3 = new Dictionary<int, Carte>();
             _cartesMarchandsTapis_etape_4 = new Dictionary<int, Carte>();
 
-            _idJoueurs_idCarteMarchands = new Dictionary<int, int>();
+            _cartesPiratesTapis_etape_1 = new Dictionary<int, Carte>();
+            _cartesPiratesTapis_etape_2 = new Dictionary<int, Carte>();
+            _cartesPiratesTapis_etape_3 = new Dictionary<int, Carte>();
+            _cartesPiratesTapis_etape_4 = new Dictionary<int, Carte>();
+
+            _attaquesEnCours = new Dictionary<Carte, Carte>();
+
+            _idCartesMarchands_idJoueurs = new Dictionary<int, int>();
+            _idCartesPirates_idJoueurs = new Dictionary<int, int>();
+
+            _estEnTrainDAttaquer = false;
 
             _deck = new Deck();
             _deck.melangerCartes();
@@ -108,11 +130,11 @@ namespace Metier
             setJoueurCurrentAPoserUneCarte(false);
             setJoueurCurrentAPiocher(false);
 
-            //Donner or à joueur
+            //Donner l'or du bateau au joueur
             foreach (var item in _cartesMarchandsTapis_etape_4)
             {
                 CarteMarchand carteM = (CarteMarchand)item.Value;
-                var idJoueur = _idJoueurs_idCarteMarchands.First(x => x.Key == carteM.getIdCarte());
+                var idJoueur = _idCartesMarchands_idJoueurs.First(x => x.Key == carteM.getIdCarte());
                 setAjoutOrJoueur(carteM.getOr(), idJoueur.Value);
             }
 
@@ -209,7 +231,7 @@ namespace Metier
             if (carte.GetType() == typeof(CarteMarchand))
             {
                 _cartesMarchandsTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
-                _idJoueurs_idCarteMarchands.Add(carte.getIdCarte(), _etape);
+                _idCartesMarchands_idJoueurs.Add(carte.getIdCarte(), _etape);
             }
             else if (carte.GetType() == typeof(CarteAmiral))
             {
@@ -221,7 +243,9 @@ namespace Metier
             }
             else if (carte.GetType() == typeof(CartePirate))
             {
-                Console.WriteLine("Carte pirate");
+                _cartesPiratesTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
+                _idCartesPirates_idJoueurs.Add(carte.getIdCarte(), _etape);
+                _estEnTrainDAttaquer = true;
             }
 
             Joueur jonh = getJoueurCurrent();
@@ -259,10 +283,86 @@ namespace Metier
             
         }
 
+        public void setCartesTapis(int etape, Dictionary<int, Carte> main)
+        {
+            if (etape == 1)
+            {
+                _cartesMarchandsTapis_etape_1 = main;
+            }
+            else if (etape == 2)
+            {
+                _cartesMarchandsTapis_etape_2 = main;
+            }
+            else if (etape == 3)
+            {
+                _cartesMarchandsTapis_etape_3 = main;
+            }
+            else
+            {
+                _cartesMarchandsTapis_etape_4 = main;
+            }
+
+        }
+
         public string getLabelJoueurCarteTapis(int IDCarte)
         {
-            var recup = _idJoueurs_idCarteMarchands.First(x => x.Key == IDCarte);
-            return getNomJoueur(recup.Value);
+
+            //_attaquesEnCours (IDPirate, IDMarchand)
+            //tous les pirates pour le marchand X
+            var recupPirate = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
+            Dictionary<int, CartePirate> possesseurCartePirate = new Dictionary<int, CartePirate>();
+            
+
+            if(recupPirate == null)
+            {
+                var recup = _idCartesMarchands_idJoueurs.First(x => x.Key == IDCarte);
+                return getNomJoueur(recup.Value);
+            }
+            else
+            {
+                //tous les pirates pour le marchand x
+                foreach(var attaque in recupPirate)
+                {
+                    //pour un pirate, on recupere son attaquant
+                    var recupAttaquant = _idCartesPirates_idJoueurs.First(x => x.Key == attaque.Key.getIdCarte());
+
+                    //ID Joueur, CartePirate pour un marchand
+                    possesseurCartePirate.Add(recupAttaquant.Key, (CartePirate)attaque.Key);
+                }
+
+                int attaque_J1 = 0;
+                int attaque_J2 = 0;
+                int attaque_J3 = 0;
+                int attaque_J4 = 0;
+
+                foreach(var item in possesseurCartePirate)
+                {
+                    if(item.Key == 1)
+                    {
+                        attaque_J1 += item.Value.getAttaque();
+                    }
+                    else if (item.Key == 2)
+                    {
+                        attaque_J2 += item.Value.getAttaque();
+                    }
+                    else if (item.Key == 3)
+                    {
+                        attaque_J3 += item.Value.getAttaque();
+                    }
+                    else
+                    {
+                        attaque_J4 += item.Value.getAttaque();
+                    }
+
+
+                }
+
+
+                return "";
+            }
+
+            
+            
         }
 
         public void setJoueurCurrentAPiocher(bool value)
@@ -285,6 +385,22 @@ namespace Metier
             }
 
             return false;
+        }
+
+        public bool getEstEnTrainDattaquer()
+        {
+            return _estEnTrainDAttaquer;
+        }
+
+        public void setEstEnTrainDattaquer(bool value)
+        {
+            _estEnTrainDAttaquer = value;
+        }
+
+        public void ajoutAttaque(Carte carte)
+        {
+            var pirate = _cartesPiratesTapis_etape_1.First(x => x.Key == _cartesPiratesTapis_etape_1.Count);
+            _attaquesEnCours.Add(pirate.Value, carte);
         }
 
     }
