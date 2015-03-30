@@ -28,6 +28,7 @@ namespace Metier
         private Dictionary<int, int> _idCartesPirates_idJoueurs;
 
         private bool _estEnTrainDAttaquer;
+        private bool _aPoserMarchand;
 
         private int _tour;
         private int _etape;
@@ -61,6 +62,7 @@ namespace Metier
             _idCartesPirates_idJoueurs = new Dictionary<int, int>();
 
             _estEnTrainDAttaquer = false;
+            _aPoserMarchand = false;
 
             _deck = new Deck();
             _deck.melangerCartes();
@@ -130,18 +132,74 @@ namespace Metier
             setJoueurCurrentAPoserUneCarte(false);
             setJoueurCurrentAPiocher(false);
 
+            Dictionary<int, Carte> temp = new Dictionary<int, Carte>();
+
+            foreach(var item in _cartesMarchandsTapis_etape_4)
+            {
+                if(maitreDeLaCarte(item.Value.getIdCarte()) == -1)
+                {
+                    temp.Add(item.Key, item.Value);
+                }
+            }
+
+            if(temp.Count != 0)
+            {
+                _cartesMarchandsTapis_etape_1 = new Dictionary<int, Carte>();
+
+                foreach(var item in temp)
+                {
+                    _cartesMarchandsTapis_etape_4.Remove(item.Key);
+                    _cartesMarchandsTapis_etape_1.Add(item.Key, item.Value);
+
+                    if(_attaquesEnCours.Count != 0)
+                    {
+                        foreach(var item2 in _attaquesEnCours)
+                        {
+                            if(item.Value == item2.Value)
+                            {
+                                _cartesPiratesTapis_etape_1 = new Dictionary<int, Carte>();
+                                _cartesPiratesTapis_etape_1.Add(_cartesPiratesTapis_etape_1.Count + 1, item2.Key);
+                            }
+                        }
+                    }
+                }
+            }
+            
             //Donner l'or du bateau au joueur
             foreach (var item in _cartesMarchandsTapis_etape_4)
             {
                 CarteMarchand carteM = (CarteMarchand)item.Value;
-                var idJoueur = _idCartesMarchands_idJoueurs.First(x => x.Key == carteM.getIdCarte());
-                setAjoutOrJoueur(carteM.getOr(), idJoueur.Value);
+                if(maitreDeLaCarte(item.Value.getIdCarte()) > 0)
+                {
+                    setAjoutOrJoueur(carteM.getOr(), maitreDeLaCarte(item.Value.getIdCarte()));
+                }
+                else if (maitreDeLaCarte(item.Value.getIdCarte()) == 0)
+                {
+                    setAjoutOrJoueur(carteM.getOr(), _etape);
+                }
+                
             }
 
             _cartesMarchandsTapis_etape_4 = _cartesMarchandsTapis_etape_3;
             _cartesMarchandsTapis_etape_3 = _cartesMarchandsTapis_etape_2;
-            _cartesMarchandsTapis_etape_2 = _cartesMarchandsTapis_etape_1;
-            _cartesMarchandsTapis_etape_1 = new Dictionary<int, Carte>();
+            
+            
+            _cartesPiratesTapis_etape_4 = _cartesPiratesTapis_etape_3;
+            _cartesPiratesTapis_etape_3 = _cartesPiratesTapis_etape_2;
+            
+
+            if (temp.Count == 0)
+            {
+                _cartesMarchandsTapis_etape_2 = _cartesMarchandsTapis_etape_1;
+                _cartesPiratesTapis_etape_2 = _cartesPiratesTapis_etape_1;
+                _cartesMarchandsTapis_etape_1 = new Dictionary<int, Carte>();
+                _cartesPiratesTapis_etape_1 = new Dictionary<int, Carte>();
+            }
+            else
+            {
+                _cartesMarchandsTapis_etape_2 = new Dictionary<int, Carte>();
+                _cartesPiratesTapis_etape_2 = new Dictionary<int, Carte>();
+            }
 
         }
 
@@ -232,6 +290,7 @@ namespace Metier
             {
                 _cartesMarchandsTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
                 _idCartesMarchands_idJoueurs.Add(carte.getIdCarte(), _etape);
+                _aPoserMarchand = true;
             }
             else if (carte.GetType() == typeof(CarteAmiral))
             {
@@ -243,22 +302,31 @@ namespace Metier
             }
             else if (carte.GetType() == typeof(CartePirate))
             {
-                _cartesPiratesTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
-                _idCartesPirates_idJoueurs.Add(carte.getIdCarte(), _etape);
-                _estEnTrainDAttaquer = true;
+                if (_cartesMarchandsTapis_etape_1.Count != 0 || _cartesMarchandsTapis_etape_2.Count != 0 || _cartesMarchandsTapis_etape_3.Count != 0 || _cartesMarchandsTapis_etape_4.Count != 0)
+                {
+                    _cartesPiratesTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
+                    _idCartesPirates_idJoueurs.Add(carte.getIdCarte(), _etape);
+                    _estEnTrainDAttaquer = true;
+                }
             }
 
-            Joueur jonh = getJoueurCurrent();
-            jonh.poserCarte(carte);
-            setJoueurCurrentAPoserUneCarte(true);
-            Dictionary<int, Carte> newCartesEnMain = new Dictionary<int, Carte>();
 
-            foreach (var carteMain in jonh.getMainJoueur())
+
+            if (_estEnTrainDAttaquer || _aPoserMarchand)
             {
-                newCartesEnMain.Add(carteMain.Key, carteMain.Value);
-            }
+                Joueur jonh = getJoueurCurrent();
+                jonh.poserCarte(carte);
+                setJoueurCurrentAPoserUneCarte(true);
+                Dictionary<int, Carte> newCartesEnMain = new Dictionary<int, Carte>();
 
-            jonh.setMainJoueur(newCartesEnMain);
+                foreach (var carteMain in jonh.getMainJoueur())
+                {
+                    newCartesEnMain.Add(carteMain.Key, carteMain.Value);
+                }
+
+                jonh.setMainJoueur(newCartesEnMain);
+            }
+            
         }
         
 
@@ -306,64 +374,150 @@ namespace Metier
 
         public string getLabelJoueurCarteTapis(int IDCarte)
         {
-
-            //_attaquesEnCours (IDPirate, IDMarchand)
-            //tous les pirates pour le marchand X
-            var recupPirate = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
-            Dictionary<int, CartePirate> possesseurCartePirate = new Dictionary<int, CartePirate>();
-            
-
-            if(recupPirate == null)
+            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+            if (attaques_joueurs == null)
             {
                 var recup = _idCartesMarchands_idJoueurs.First(x => x.Key == IDCarte);
                 return getNomJoueur(recup.Value);
             }
-            else
+
+            int verifEgalite = maitreDeLaCarte(IDCarte);
+
+            if(verifEgalite == -1)
             {
-                //tous les pirates pour le marchand x
-                foreach(var attaque in recupPirate)
-                {
-                    //pour un pirate, on recupere son attaquant
-                    var recupAttaquant = _idCartesPirates_idJoueurs.First(x => x.Key == attaque.Key.getIdCarte());
-
-                    //ID Joueur, CartePirate pour un marchand
-                    possesseurCartePirate.Add(recupAttaquant.Key, (CartePirate)attaque.Key);
-                }
-
-                int attaque_J1 = 0;
-                int attaque_J2 = 0;
-                int attaque_J3 = 0;
-                int attaque_J4 = 0;
-
-                foreach(var item in possesseurCartePirate)
-                {
-                    if(item.Key == 1)
-                    {
-                        attaque_J1 += item.Value.getAttaque();
-                    }
-                    else if (item.Key == 2)
-                    {
-                        attaque_J2 += item.Value.getAttaque();
-                    }
-                    else if (item.Key == 3)
-                    {
-                        attaque_J3 += item.Value.getAttaque();
-                    }
-                    else
-                    {
-                        attaque_J4 += item.Value.getAttaque();
-                    }
-
-
-                }
-
-
-                return "";
+                return getNomsEgalite(IDCarte);
             }
 
-            
-            
+            return getNomJoueur(verifEgalite);
         }
+
+        public string getNomsEgalite(int IDCarte)
+        {
+            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+
+            if (attaques_joueurs != null)
+            {
+                var attaque_J1 = attaques_joueurs.First(x => x.Key == 1);
+                var attaque_J2 = attaques_joueurs.First(x => x.Key == 2);
+                var attaque_J3 = attaques_joueurs.First(x => x.Key == 3);
+                var attaque_J4 = attaques_joueurs.First(x => x.Key == 4);
+
+                string nom = "";
+                foreach (var attaque in attaques_joueurs)
+                {
+                    foreach (var attaque2 in attaques_joueurs)
+                    {
+                        if (attaque.Value != 0 && attaque.Key != attaque2.Key && attaque.Value == attaque2.Value)
+                        {
+                            if (nom.Contains(getNomJoueur(attaque.Key)) == false && nom.Contains(getNomJoueur(attaque2.Key)) == false)
+                            {
+                                nom += getNomJoueur(attaque.Key) + " - " + getNomJoueur(attaque2.Key);
+                            }
+                            else if (nom.Contains(getNomJoueur(attaque2.Key)) == true && nom.Contains(getNomJoueur(attaque.Key)) == false)
+                            {
+                                nom += " - " + getNomJoueur(attaque.Key);
+                            }
+                            else if (nom.Contains(getNomJoueur(attaque.Key)) == true && nom.Contains(getNomJoueur(attaque2.Key)) == false)
+                            {
+                                nom += " - " + getNomJoueur(attaque2.Key);
+                            }
+
+                        }
+                    }
+                }
+
+                return nom;
+            }
+
+            return "";
+        }
+
+        public int maitreDeLaCarte(int IDCarte)
+        {
+            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+
+            if(attaques_joueurs != null)
+            {
+                var attaque_J1 = attaques_joueurs.First(x => x.Key == 1);
+                var attaque_J2 = attaques_joueurs.First(x => x.Key == 2);
+                var attaque_J3 = attaques_joueurs.First(x => x.Key == 3);
+                var attaque_J4 = attaques_joueurs.First(x => x.Key == 4);
+
+                if (attaque_J1.Value > attaque_J2.Value && attaque_J1.Value > attaque_J3.Value && attaque_J1.Value > attaque_J3.Value)
+                {
+                    return 1;
+                }
+                else if (attaque_J2.Value > attaque_J3.Value && attaque_J2.Value > attaque_J4.Value && attaque_J2.Value > attaque_J1.Value)
+                {
+                    return 2;
+                }
+                else if (attaque_J3.Value > attaque_J4.Value && attaque_J3.Value > attaque_J1.Value && attaque_J3.Value > attaque_J2.Value)
+                {
+                    return 3;
+                }
+                else if (attaque_J4.Value > attaque_J1.Value && attaque_J4.Value > attaque_J2.Value && attaque_J4.Value > attaque_J3.Value)
+                {
+                    return 4;
+                }
+
+                if(attaque_J1.Value == attaque_J2.Value || attaque_J1.Value == attaque_J3.Value || attaque_J1.Value == attaque_J4.Value || attaque_J2.Value == attaque_J3.Value || attaque_J2.Value == attaque_J4.Value || attaque_J3.Value == attaque_J4.Value)
+                {
+                    return -1;
+                }
+            }
+            
+
+            return 0;
+        }
+
+        public Dictionary<int, int> getAttaquesJoueursCarte(int IDCarte)
+        {
+            Dictionary<CartePirate, int> possesseurCartePirate = new Dictionary<CartePirate, int>();
+            var recupPirates = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
+            int attaque_J1 = 0;
+            int attaque_J2 = 0;
+            int attaque_J3 = 0;
+            int attaque_J4 = 0;
+
+            foreach (var attaque in recupPirates)
+            {
+                var recupAttaquant = _idCartesPirates_idJoueurs.First(x => x.Key == attaque.Key.getIdCarte());
+                possesseurCartePirate.Add((CartePirate)attaque.Key, recupAttaquant.Value);
+            }
+
+            foreach(var item in possesseurCartePirate)
+            {
+                if(item.Value == 1)
+                {
+                    attaque_J1 += item.Key.getAttaque();
+                }
+                else if (item.Value == 2)
+                {
+                    attaque_J2 += item.Key.getAttaque();
+                }
+                else if (item.Value == 3)
+                {
+                    attaque_J3 += item.Key.getAttaque();
+                }
+                else
+                {
+                    attaque_J4 += item.Key.getAttaque();
+                }
+            }
+
+            if(attaque_J1 != 0 || attaque_J2 != 0 || attaque_J3 != 0 || attaque_J4 != 0)
+            {
+                Dictionary<int, int> idJoueur_pointsAttaque = new Dictionary<int,int>();
+                idJoueur_pointsAttaque.Add(1, attaque_J1);
+                idJoueur_pointsAttaque.Add(2, attaque_J2);
+                idJoueur_pointsAttaque.Add(3, attaque_J3);
+                idJoueur_pointsAttaque.Add(4, attaque_J4);
+                return idJoueur_pointsAttaque;
+            }
+                
+            return null;
+        }
+
 
         public void setJoueurCurrentAPiocher(bool value)
         {

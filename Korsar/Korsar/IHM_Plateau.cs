@@ -31,6 +31,8 @@ namespace Korsar
         Dictionary<int, PictureBox> _imagesCartesMarchands_etape_3;
         Dictionary<int, PictureBox> _imagesCartesMarchands_etape_4;
 
+        Dictionary<int, PictureBox> _imagesAttaques_etape_1;
+
         Dictionary<int, Label> _tapisLabelJoueur_etape_1;
         Dictionary<int, Label> _tapisLabelJoueur_etape_2;
         Dictionary<int, Label> _tapisLabelJoueur_etape_3;
@@ -46,6 +48,8 @@ namespace Korsar
             _imagesCartesMarchands_etape_2 = new Dictionary<int, PictureBox>();
             _imagesCartesMarchands_etape_3 = new Dictionary<int, PictureBox>();
             _imagesCartesMarchands_etape_4 = new Dictionary<int, PictureBox>();
+
+            _imagesAttaques_etape_1 = new Dictionary<int, PictureBox>();
 
             _tapisLabelJoueur_etape_1 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_2 = new Dictionary<int, Label>();
@@ -154,6 +158,7 @@ namespace Korsar
 
                     Label labelJoueur = new Label();
                     labelJoueur.Text = plateau.getLabelJoueurCarteTapis(carte.Value.getIdCarte());
+                    labelJoueur.Size = new Size(labelJoueur.Text.Length * 6 + 5, 13);
 
                     if (x >= 3)
                     {
@@ -358,10 +363,6 @@ namespace Korsar
                 nettoyerPlateau();
                 plateau.setEtapeSuivante();
                 chargementPlateau();
-
-                //Correctif temp bug affichage nom
-                nettoyerPlateau();
-                chargementPlateau();
                 
             }
            
@@ -403,10 +404,6 @@ namespace Korsar
 
                         nettoyerPlateau();
                         chargementPlateau();
-
-                        //Correctif temp bug affichage nom
-                        nettoyerPlateau();
-                        chargementPlateau();
                     }
                 }
             }
@@ -418,45 +415,49 @@ namespace Korsar
             if(plateau.getEstEnTrainDattaquer())
             {
                 plateau.setEstEnTrainDattaquer(false);
+                
+
                 PictureBox pb = (PictureBox)sender;
-
+                Carte marchandAttaque = plateau.getCarteByID((int)pb.Tag);
+                plateau.ajoutAttaque(marchandAttaque);
                 var mainJoueur_1 = plateau.getCartesTapis(1);
+                int maitre = plateau.maitreDeLaCarte((int)pb.Tag);
 
-                if(pb.Name == "etape_2")
-                {
-                    var mainJoueur_2 = plateau.getCartesTapis(2);
-                    var recup = mainJoueur_2.First(x => x.Value.getIdCarte() == (int)pb.Tag);
-                    mainJoueur_2.Remove(recup.Key);
-                    mainJoueur_1.Add(recup.Key, recup.Value);
-                    plateau.ajoutAttaque(recup.Value);
-                    plateau.setCartesTapis(2, mainJoueur_2);
-                    plateau.setCartesTapis(1, mainJoueur_1);
-                    
-                }
-                else if(pb.Name == "etape_3")
-                {
-                    var mainJoueur_3 = plateau.getCartesTapis(3);
-                    var recup = mainJoueur_3.First(x => x.Value.getIdCarte() == (int)pb.Tag);
-                    mainJoueur_3.Remove(recup.Key);
-                    mainJoueur_1.Add(recup.Key, recup.Value);
-                    plateau.ajoutAttaque(recup.Value);
-                    plateau.setCartesTapis(3, mainJoueur_3);
-                    plateau.setCartesTapis(1, mainJoueur_1);
-                }
-                else
-                {
-                    var mainJoueur_4 = plateau.getCartesTapis(4);
-                    var recup = mainJoueur_4.First(x => x.Value.getIdCarte() == (int)pb.Tag);
-                    mainJoueur_4.Remove(recup.Key);
-                    mainJoueur_1.Add(recup.Key, recup.Value);
-                    plateau.ajoutAttaque(recup.Value);
-                    plateau.setCartesTapis(4, mainJoueur_4);
-                    plateau.setCartesTapis(1, mainJoueur_1);
-                }
 
-                nettoyerPlateau();
-                chargementPlateau();
+                if (maitre == plateau.getEtape() || maitre == -1)
+                {   
+                    if (pb.Name == "etape_2")
+                    {
+                        var mainJoueur_2 = plateau.getCartesTapis(2);
+                        var recup = mainJoueur_2.First(x => x.Value.getIdCarte() == (int)pb.Tag);
+                        mainJoueur_2.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key, recup.Value);
+                        plateau.setCartesTapis(2, mainJoueur_2);
+                        plateau.setCartesTapis(1, mainJoueur_1);
 
+                    }
+                    else if (pb.Name == "etape_3")
+                    {
+                        var mainJoueur_3 = plateau.getCartesTapis(3);
+                        var recup = mainJoueur_3.First(x => x.Value.getIdCarte() == (int)pb.Tag);
+                        mainJoueur_3.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key, recup.Value);
+                        plateau.setCartesTapis(3, mainJoueur_3);
+                        plateau.setCartesTapis(1, mainJoueur_1);
+                    }
+                    else if (pb.Name == "etape_4")
+                    {
+                        var mainJoueur_4 = plateau.getCartesTapis(4);
+                        var recup = mainJoueur_4.First(x => x.Value.getIdCarte() == (int)pb.Tag);
+                        mainJoueur_4.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key, recup.Value);
+                        plateau.setCartesTapis(4, mainJoueur_4);
+                        plateau.setCartesTapis(1, mainJoueur_1);
+                    }
+
+                    nettoyerPlateau();
+                    chargementPlateau();
+                }
             }
             
         }
