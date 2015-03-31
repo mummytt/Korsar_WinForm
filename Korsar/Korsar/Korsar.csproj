@@ -97,34 +97,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ressources\carte_amiral.jpg" />
-    <Content Include="Ressources\carte_capitaine_bleu.jpg" />
-    <Content Include="Ressources\carte_capitaine_jaune.jpg" />
-    <Content Include="Ressources\carte_capitaine_rouge.jpg" />
-    <Content Include="Ressources\carte_capitaine_vert.jpg" />
-    <Content Include="Ressources\carte_marchand_2.jpg" />
-    <Content Include="Ressources\carte_marchand_3.jpg" />
-    <Content Include="Ressources\carte_marchand_4.jpg" />
-    <Content Include="Ressources\carte_marchand_5.jpg" />
-    <Content Include="Ressources\carte_marchand_6.jpg" />
-    <Content Include="Ressources\carte_marchand_7.jpg" />
-    <Content Include="Ressources\carte_marchand_8.jpg" />
-    <Content Include="Ressources\carte_pirate_1_bleu.jpg" />
-    <Content Include="Ressources\carte_pirate_1_jaune.jpg" />
-    <Content Include="Ressources\carte_pirate_1_rouge.jpg" />
-    <Content Include="Ressources\carte_pirate_1_vert.jpg" />
-    <Content Include="Ressources\carte_pirate_2_bleu.jpg" />
-    <Content Include="Ressources\carte_pirate_2_jaune.jpg" />
-    <Content Include="Ressources\carte_pirate_2_rouge.jpg" />
-    <Content Include="Ressources\carte_pirate_2_vert.jpg" />
-    <Content Include="Ressources\carte_pirate_3_bleu.jpg" />
-    <Content Include="Ressources\carte_pirate_3_jaune.jpg" />
-    <Content Include="Ressources\carte_pirate_3_rouge.jpg" />
-    <Content Include="Ressources\carte_pirate_3_vert.jpg" />
-    <Content Include="Ressources\carte_pirate_4_bleu.jpg" />
-    <Content Include="Ressources\carte_pirate_4_jaune.jpg" />
-    <Content Include="Ressources\carte_pirate_4_rouge.jpg" />
-    <Content Include="Ressources\carte_pirate_4_vert.jpg" />
     <Content Include="Ressources\dos.jpg" />
     <Content Include="Ressources\joueur.jpg" />
     <Content Include="Ressources\joueurActif.jpg" />

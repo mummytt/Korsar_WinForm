@@ -35,5 +35,10 @@ namespace Metier
             return _valeurAttaque;
         }
 
+        public string getCouleur()
+        {
+            return _couleur;
+        }
+
     }
 }
