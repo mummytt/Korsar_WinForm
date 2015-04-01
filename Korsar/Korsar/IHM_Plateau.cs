@@ -31,12 +31,15 @@ namespace Korsar
         Dictionary<int, PictureBox> _imagesCartesMarchands_etape_3;
         Dictionary<int, PictureBox> _imagesCartesMarchands_etape_4;
 
-        Dictionary<int, PictureBox> _imagesAttaques_etape_1;
-
         Dictionary<int, Label> _tapisLabelJoueur_etape_1;
         Dictionary<int, Label> _tapisLabelJoueur_etape_2;
         Dictionary<int, Label> _tapisLabelJoueur_etape_3;
         Dictionary<int, Label> _tapisLabelJoueur_etape_4;
+
+        Dictionary<int, Label> _tapisLabelAttaques_etape_1;
+        Dictionary<int, Label> _tapisLabelAttaques_etape_2;
+        Dictionary<int, Label> _tapisLabelAttaques_etape_3;
+        Dictionary<int, Label> _tapisLabelAttaques_etape_4;
 
         public IHM_Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
         {
@@ -49,12 +52,15 @@ namespace Korsar
             _imagesCartesMarchands_etape_3 = new Dictionary<int, PictureBox>();
             _imagesCartesMarchands_etape_4 = new Dictionary<int, PictureBox>();
 
-            _imagesAttaques_etape_1 = new Dictionary<int, PictureBox>();
-
             _tapisLabelJoueur_etape_1 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_2 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_3 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_4 = new Dictionary<int, Label>();
+
+            _tapisLabelAttaques_etape_1 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_2 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_3 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_4 = new Dictionary<int, Label>();
 
             l_joueur1.Text = plateau.getNomJoueur(1);
             l_joueur2.Text = plateau.getNomJoueur(2);
@@ -144,11 +150,14 @@ namespace Korsar
             for (int i = 1; i <= 4; i++)
             {
                 Dictionary<int, Carte> cartesTapis = plateau.getCartesTapis(i);
+                Label[] lAttaque = new Label[4];
                 int x = 0;
                 _décalageCarteTapis = 0;
 
                 foreach (var carte in cartesTapis)
                 {
+
+                    //MARCHAND
                     PictureBox pb = new PictureBox();
                     pb.BorderStyle = BorderStyle.FixedSingle;
                     pb.Tag = carte.Value.getIdCarte();
@@ -175,32 +184,127 @@ namespace Korsar
 
                     x++;
 
+
+                    //ATTAQUES
+
+                    
+                    
+                    var attaquesJoueurs = plateau.getAttaquesJoueursCarte(carte.Value.getIdCarte());
+
+                    if(attaquesJoueurs != null)
+                    {
+                        int j = 0;
+                        foreach (var attaque in attaquesJoueurs)
+                        {
+
+                            if(attaque.Value != 0)
+                            {
+                                string couleur = plateau.getCouleurAttaquesJoueursCarte(carte.Value.getIdCarte(), attaque.Key);
+
+                                if (couleur != "")
+                                {
+
+                                    lAttaque[j] = new Label();
+                                    lAttaque[j].Text = attaque.Value.ToString();
+                                    lAttaque[j].Size = new Size(29, 29);
+                                    lAttaque[j].Padding = new Padding(8);
+
+                                    if (attaque.Key == 1)
+                                    {
+                                        lAttaque[j].Location = new Point(pb.Location.X - _tailleCarteLargeurMin, 50);
+                                    }
+                                    else if (attaque.Key == 2)
+                                    {
+                                        lAttaque[j].Location = new Point(pb.Location.X + _tailleCarteLargeurMin, 50);
+                                    }
+                                    else if (attaque.Key == 3)
+                                    {
+                                        lAttaque[j].Location = new Point(pb.Location.X + _tailleCarteLargeurMin, _tailleCarteHauteur + 21);
+                                    }
+                                    else if (attaque.Key == 4)
+                                    {
+                                        lAttaque[j].Location = new Point(pb.Location.X - _tailleCarteLargeurMin, _tailleCarteHauteur + 21);
+                                    }
+
+                                    if (couleur == "rouge")
+                                    {
+                                        lAttaque[j].Image = Properties.Resources.attaque_rouge;
+                                    }
+                                    else if (couleur == "bleu")
+                                    {
+                                        lAttaque[j].Image = Properties.Resources.attaque_bleu;
+                                    }
+                                    else if (couleur == "vert")
+                                    {
+                                        lAttaque[j].Image = Properties.Resources.attaque_vert;
+                                    }
+                                    else if (couleur == "jaune")
+                                    {
+                                        lAttaque[j].Image = Properties.Resources.attaque_jaune;
+                                    }
+
+                                }
+                                j++;
+
+                            }
+                            
+                        }
+
+                    }
+
+                    
+
+                    //MARCHAND
                     if (i == 1)
                     {
                         pb.Name = "etape_1";
                         _imagesCartesMarchands_etape_1.Add(carte.Key, pb);
                         _tapisLabelJoueur_etape_1.Add(carte.Value.getIdCarte(), labelJoueur);
+
+                        foreach(var item in lAttaque)
+                        {
+                            _tapisLabelAttaques_etape_1.Add(_tapisLabelAttaques_etape_1.Count + 1, item);
+                        }
+                        
+                        
                     }
                     else if (i == 2)
                     {
                         pb.Name = "etape_2";
                         _imagesCartesMarchands_etape_2.Add(carte.Key, pb);
                         _tapisLabelJoueur_etape_2.Add(carte.Value.getIdCarte(), labelJoueur);
+
+                        foreach (var item in lAttaque)
+                        {
+                            _tapisLabelAttaques_etape_2.Add(_tapisLabelAttaques_etape_2.Count + 1, item);
+                        }
                     }
                     else if (i == 3)
                     {
                         pb.Name = "etape_3";
                         _imagesCartesMarchands_etape_3.Add(carte.Key, pb);
                         _tapisLabelJoueur_etape_3.Add(carte.Value.getIdCarte(), labelJoueur);
+
+                        foreach (var item in lAttaque)
+                        {
+                            _tapisLabelAttaques_etape_3.Add(_tapisLabelAttaques_etape_3.Count + 1, item);
+                        }
                     }
                     else
                     {
                         pb.Name = "etape_4";
                         _imagesCartesMarchands_etape_4.Add(carte.Key, pb);
                         _tapisLabelJoueur_etape_4.Add(carte.Value.getIdCarte(), labelJoueur);
+
+                        foreach (var item in lAttaque)
+                        {
+                            _tapisLabelAttaques_etape_4.Add(_tapisLabelAttaques_etape_4.Count + 1, item);
+                        }
                     }
+                    
 
                 }
+               
 
                 if (i == 1)
                 {
@@ -213,6 +317,15 @@ namespace Korsar
                     {
                         gb_etape_1.Controls.Add(item.Value);
                     }
+
+                    foreach (var item in _tapisLabelAttaques_etape_1)
+                    {
+                        gb_etape_1.Controls.Add(item.Value);
+                    }
+
+                    
+
+                    
                 }
                 else if (i == 2)
                 {
@@ -222,6 +335,11 @@ namespace Korsar
                     }
 
                     foreach (var item in _tapisLabelJoueur_etape_2)
+                    {
+                        gb_etape_2.Controls.Add(item.Value);
+                    }
+
+                    foreach (var item in _tapisLabelAttaques_etape_2)
                     {
                         gb_etape_2.Controls.Add(item.Value);
                     }
@@ -237,6 +355,11 @@ namespace Korsar
                     {
                         gb_etape_3.Controls.Add(item.Value);
                     }
+
+                    foreach (var item in _tapisLabelAttaques_etape_3)
+                    {
+                        gb_etape_3.Controls.Add(item.Value);
+                    }
                 }
                 else
                 {
@@ -246,6 +369,11 @@ namespace Korsar
                     }
 
                     foreach (var item in _tapisLabelJoueur_etape_4)
+                    {
+                        gb_etape_4.Controls.Add(item.Value);
+                    }
+
+                    foreach (var item in _tapisLabelAttaques_etape_4)
                     {
                         gb_etape_4.Controls.Add(item.Value);
                     }
@@ -346,6 +474,28 @@ namespace Korsar
                 gb_etape_4.Controls.Remove(item.Value);
             }
 
+            foreach (var item in _tapisLabelAttaques_etape_1)
+            {
+                gb_etape_1.Controls.Remove(item.Value);
+            }
+
+            foreach (var item in _tapisLabelAttaques_etape_2)
+            {
+                gb_etape_2.Controls.Remove(item.Value);
+            }
+
+            foreach (var item in _tapisLabelAttaques_etape_3)
+            {
+                gb_etape_3.Controls.Remove(item.Value);
+            }
+
+            foreach (var item in _tapisLabelAttaques_etape_4)
+            {
+                gb_etape_4.Controls.Remove(item.Value);
+            }
+
+            
+
             _imagesCartesMarchands_etape_1 = new Dictionary<int, PictureBox>();
             _imagesCartesMarchands_etape_2 = new Dictionary<int, PictureBox>();
             _imagesCartesMarchands_etape_3 = new Dictionary<int, PictureBox>();
@@ -355,6 +505,11 @@ namespace Korsar
             _tapisLabelJoueur_etape_2 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_3 = new Dictionary<int, Label>();
             _tapisLabelJoueur_etape_4 = new Dictionary<int, Label>();
+
+            _tapisLabelAttaques_etape_1 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_2 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_3 = new Dictionary<int, Label>();
+            _tapisLabelAttaques_etape_4 = new Dictionary<int, Label>();
         }
 
         private void b_etape_Click(object sender, EventArgs e)
@@ -404,7 +559,6 @@ namespace Korsar
                     if (plateau.getVerifAPiocherCurrent() == false && plateau.getVerifAPoserUneCarteCurrent() == false)
                     {
                         plateau.poserUneCarte(carte);
-                        plateau.setAPoserMarchand(false);
                         nettoyerPlateau();
                         chargementPlateau();
                     }
@@ -419,9 +573,9 @@ namespace Korsar
             {
                 PictureBox pb = (PictureBox)sender;
                 Carte marchandAttaque = plateau.getCarteByID((int)pb.Tag);
-                plateau.ajoutAttaque(marchandAttaque);
+                CartePirate attaquant = (CartePirate)plateau.getPirateEnCours();
 
-                CartePirate attaquant = (CartePirate)plateau.getDernierPirate();
+                plateau.ajoutAttaque(attaquant, marchandAttaque);
 
                 if(plateau.verifAttaqueValide(attaquant.getCouleur(), marchandAttaque.getIdCarte()))
                 {

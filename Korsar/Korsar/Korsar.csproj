@@ -97,6 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ressources\attaque_bleu.bmp" />
+    <Content Include="Ressources\attaque_jaune.bmp" />
+    <Content Include="Ressources\attaque_rouge.bmp" />
+    <Content Include="Ressources\attaque_vert.bmp" />
     <Content Include="Ressources\dos.jpg" />
     <Content Include="Ressources\joueur.jpg" />
     <Content Include="Ressources\joueurActif.jpg" />

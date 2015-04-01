@@ -329,7 +329,7 @@ namespace Metier
                 {
                     if(_attaqueValide != true)
                     {
-                        _cartesPiratesTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
+                        _cartesPiratesTapis_etape_1.Add(_cartesPiratesTapis_etape_1.Count + 1, carte);
                         _idCartesPirates_idJoueurs.Add(carte.getIdCarte(), _etape);
                         _estEnTrainDAttaquer = true;
                     }
@@ -342,6 +342,9 @@ namespace Metier
                 Joueur jonh = getJoueurCurrent();
                 jonh.poserCarte(carte);
                 setJoueurCurrentAPoserUneCarte(true);
+                _aPoserMarchand = false;
+                _attaqueValide = false;
+
                 Dictionary<int, Carte> newCartesEnMain = new Dictionary<int, Carte>();
 
                 foreach (var carteMain in jonh.getMainJoueur())
@@ -502,7 +505,7 @@ namespace Metier
                 {
                     nom = getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
-                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J3 == max_J4 && max_J1 != 0)
+                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J3 == max_J4 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
@@ -676,10 +679,9 @@ namespace Metier
             _aPoserMarchand = value;
         }
 
-        public void ajoutAttaque(Carte carte)
+        public void ajoutAttaque(Carte cartePirate, Carte carteMarchand)
         {
-            var pirate = _cartesPiratesTapis_etape_1.First(x => x.Key == _cartesPiratesTapis_etape_1.Count);
-            _attaquesEnCours.Add(pirate.Value, carte);
+            _attaquesEnCours.Add(cartePirate, carteMarchand);
         }
 
         public void setAttaqueValide(bool value)
@@ -734,8 +736,8 @@ namespace Metier
             {
                 couleurEnCours = getCouleurAttaquesJoueursCarte(IDCarte, 2);
                 color_2 = getCouleurAttaquesJoueursCarte(IDCarte, 1);
-                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 2);
-                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 3);
+                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 3);
+                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 4);
             }
             else if (_etape == 3)
             {
@@ -761,17 +763,18 @@ namespace Metier
             return false;
         }
 
-        public Carte getDernierPirate()
+        public Carte getPirateEnCours()
         {
             if (_cartesPiratesTapis_etape_1.Count != 0)
             {
-                var temp = _cartesPiratesTapis_etape_1.First(x => x.Key == _cartesPiratesTapis_etape_1.Count);
-
-                return temp.Value;
+                Carte cartePirate;
+                if (_cartesPiratesTapis_etape_1.TryGetValue(_cartesPiratesTapis_etape_1.Count, out cartePirate))
+                {
+                    return cartePirate;
+                }
             }
 
-                return null;
-            
+            return null;
         }
 
         public void setAttaqueInvalide()
@@ -781,7 +784,10 @@ namespace Metier
                 var temp = _cartesPiratesTapis_etape_1.First(x => x.Key == _cartesPiratesTapis_etape_1.Count);
 
                 _cartesPiratesTapis_etape_1.Remove(temp.Key);
+                _attaquesEnCours.Remove(temp.Value);
                 _idCartesPirates_idJoueurs.Remove(temp.Value.getIdCarte());
+                _estEnTrainDAttaquer = false;
+                _attaqueValide = false;
             }
 
         }
