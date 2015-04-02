@@ -100,6 +100,7 @@ namespace Korsar
             plateau.setDonnerCarteAJoueur(4);
             plateau.setDonnerCarteAJoueur(4);
             plateau.setDonnerCarteAJoueur(4);
+
         }
 
         public void afficherMainJoueur()
@@ -186,9 +187,6 @@ namespace Korsar
 
 
                     //ATTAQUES
-
-                    
-                    
                     var attaquesJoueurs = plateau.getAttaquesJoueursCarte(carte.Value.getIdCarte());
 
                     if(attaquesJoueurs != null)
@@ -206,8 +204,18 @@ namespace Korsar
 
                                     lAttaque[j] = new Label();
                                     lAttaque[j].Text = attaque.Value.ToString();
-                                    lAttaque[j].Size = new Size(29, 29);
-                                    lAttaque[j].Padding = new Padding(8);
+
+                                    if (attaque.Value >= 10)
+                                    {
+                                        lAttaque[j].Size = new Size(30, 30);
+                                        lAttaque[j].Padding = new Padding(5, 7, 5, 5);
+                                    }
+                                    else
+                                    {
+                                        lAttaque[j].Size = new Size(29, 29);
+                                        lAttaque[j].Padding = new Padding(8);
+                                    }
+                                    
 
                                     if (attaque.Key == 1)
                                     {
@@ -253,8 +261,6 @@ namespace Korsar
                     }
 
                     
-
-                    //MARCHAND
                     if (i == 1)
                     {
                         pb.Name = "etape_1";
@@ -627,14 +633,6 @@ namespace Korsar
                 {
                     plateau.setAttaqueInvalide();
                 }
-
-
-
-                
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                Console.WriteLine(plateau.getCouleurAttaquesJoueursCarte(marchandAttaque.getIdCarte(), plateau.getEtape()));
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
                 
             }
             

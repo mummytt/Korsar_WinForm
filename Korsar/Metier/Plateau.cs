@@ -169,6 +169,7 @@ namespace Metier
                 }
 
                 Dictionary<Carte, Carte> KeyAttaqueSuppr = new Dictionary<Carte, Carte>();
+                Dictionary<int, int> KeyAttaqueSuppr2 = new Dictionary<int, int>();
 
                 foreach(var item in _cartesMarchandsTapis_etape_4)
                 {
@@ -178,12 +179,27 @@ namespace Metier
                         {
                             KeyAttaqueSuppr.Add(item2.Key, item2.Key);
                         }
+
+                        foreach (var item3 in _idCartesPirates_idJoueurs)
+                        {
+                            if (item2.Key.getIdCarte() == item3.Key)
+                            {
+                                KeyAttaqueSuppr2.Add(item3.Key, item3.Key);
+                            }
+                        }
                     }
+
+                    
                 }
 
                 foreach(var item in KeyAttaqueSuppr)
                 {
                     _attaquesEnCours.Remove(item.Key);
+                }
+
+                foreach (var item in KeyAttaqueSuppr2)
+                {
+                    _idCartesPirates_idJoueurs.Remove(item.Key);
                 }
 
             }
@@ -202,7 +218,7 @@ namespace Metier
                 }
                 
             }
-
+            
             _cartesMarchandsTapis_etape_4 = _cartesMarchandsTapis_etape_3;
             _cartesMarchandsTapis_etape_3 = _cartesMarchandsTapis_etape_2;
             
@@ -314,6 +330,7 @@ namespace Metier
                 _cartesMarchandsTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
                 _idCartesMarchands_idJoueurs.Add(carte.getIdCarte(), _etape);
                 _aPoserMarchand = true;
+                _estEnTrainDAttaquer = false;
             }
             else if (carte.GetType() == typeof(CarteAmiral))
             {
@@ -469,15 +486,15 @@ namespace Metier
 
                 string nom = "";
 
-                if (max_J1 == max_J2 && max_J2 > max_J3 && max_J2 > max_J4 && max_J1 > 0)
+                if (max_J1 == max_J2 && max_J1 > max_J3 && max_J1 > max_J4 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(2);
                 }
-                else if (max_J1 == max_J3 && max_J3 > max_J2 && max_J3 > max_J4 && max_J1 > 0)
+                else if (max_J1 == max_J3 && max_J1 > max_J2 && max_J1 > max_J4 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(3);
                 }
-                else if (max_J1 == max_J4 && max_J4 > max_J2 && max_J4 > max_J3 && max_J1 > 0)
+                else if (max_J1 == max_J4 && max_J1 > max_J2 && max_J1 > max_J3 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(4);
                 }
@@ -489,23 +506,23 @@ namespace Metier
                 {
                     nom = getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
-                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J1 > max_J4 && max_J1 > 0)
+                else if (max_J1 == max_J2 && max_J1 == max_J3 && max_J1 > max_J4 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3);
                 }
-                else if (max_J1 == max_J2 && max_J2 == max_J4 && max_J1 > max_J3 && max_J1 > 0)
+                else if (max_J1 == max_J2 && max_J1 == max_J4 && max_J1 > max_J3 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(4);
                 }
-                else if (max_J1 == max_J3 && max_J3 == max_J4 && max_J1 > max_J2 && max_J1 > 0)
+                else if (max_J1 == max_J3 && max_J1 == max_J4 && max_J1 > max_J2 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
-                else if (max_J2 == max_J3 && max_J3 == max_J4 && max_J2 > max_J1 && max_J1 > 2)
+                else if (max_J2 == max_J3 && max_J2 == max_J4 && max_J2 > max_J1 && max_J2 > 0)
                 {
                     nom = getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
-                else if (max_J1 == max_J2 && max_J2 == max_J3 && max_J3 == max_J4 && max_J1 > 0)
+                else if (max_J1 == max_J2 && max_J1 == max_J3 && max_J1 == max_J4 && max_J1 > 0)
                 {
                     nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
                 }
@@ -695,20 +712,25 @@ namespace Metier
             {
                 try
                 {
-                    var temp = _idCartesPirates_idJoueurs.First(x => x.Value == idJoueur);
+                    var temp = _idCartesPirates_idJoueurs.Where(x => x.Value == idJoueur);
                     var temp2 = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
 
-                    foreach (var item in temp2)
+                    foreach(var item1 in temp)
                     {
-                        if (item.Key.getIdCarte() == temp.Key)
+                        foreach (var item2 in temp2)
                         {
-                            CartePirate carte = (CartePirate)item.Key;
-                            return carte.getCouleur();
+                            if (item2.Key.getIdCarte() == item1.Key)
+                            {
+                                CartePirate carte = (CartePirate)item2.Key;
+                                return carte.getCouleur();
+                            }
                         }
                     }
+                    
                 }
                 catch(Exception e)
                 {
+                    Console.WriteLine("Exception dans getCouleurAttaquesJoueursCarte : " + e.ToString());
                     return "";
                 }
                 
