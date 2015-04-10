@@ -33,14 +33,14 @@ namespace Metier
             _imageCarteMiniature = imageMin;
         }
 
-        public int recuperer_idCarte()
-        {
-            return _idCarte;
-        }
-
         public string afficher_nomCarte()
         {
             return _nomCarte;
+        }
+
+        public int recuperer_idCarte()
+        {
+            return _idCarte;
         }
 
         public Bitmap recuperer_imageCarte()
@@ -51,6 +51,5 @@ namespace Metier
         {
             return _imageCarteMiniature;
         }
-
     }
 }

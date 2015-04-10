@@ -235,9 +235,20 @@ namespace Metier
             _nombreCartesRestantes = _deck_pioche.Count;
         }
 
-        public Dictionary<int, Carte> recuperer_deckPioche()
+        public Carte piocher()
         {
-            return _deck_pioche;
+            Carte carte = null;
+
+            if (_nombreCartesRestantes != 0)
+            {
+                _deck_pioche.TryGetValue(_increment_piocheCarte, out carte);
+                _deck_pioche.Remove(_increment_piocheCarte);
+                _increment_piocheCarte++;
+            }
+
+            _nombreCartesRestantes = _deck_pioche.Count;
+
+            return carte;
         }
 
         public void melanger_cartes()
@@ -291,29 +302,16 @@ namespace Metier
                     }
 
                 } while ((jeton == false) && (_compteur != _nombreCartes));
-
-
             }
 
             _deck_pioche = _newDeck;
-
-
         }
 
-        public Carte piocher()
+       
+
+        public Dictionary<int, Carte> recuperer_deckPioche()
         {
-            Carte carte = null;
-
-            if(_nombreCartesRestantes != 0)
-            {
-                _deck_pioche.TryGetValue(_increment_piocheCarte, out carte);
-                _deck_pioche.Remove(_increment_piocheCarte);
-                _increment_piocheCarte++;
-            }
-
-            _nombreCartesRestantes = _deck_pioche.Count;
-
-            return carte;
+            return _deck_pioche;
         }
 
         public Carte recuperer_carte_parID_deckBase(int idCarte)

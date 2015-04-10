@@ -583,7 +583,7 @@ namespace Korsar
                 Carte marchandAttaque = plateau.recuperer_carte_parID((int)pb.Tag);
                 CartePirate attaquant = (CartePirate)plateau.recuperer_pirateEnCours();
 
-                plateau.ajout_attaque(attaquant, marchandAttaque);
+                plateau.ajouter_attaque(attaquant, marchandAttaque);
 
                 if(plateau.verifier_attaqueValide(attaquant.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
                 {
@@ -633,7 +633,7 @@ namespace Korsar
                 }
                 else
                 {
-                    plateau.modifier_AttaqueInvalide();
+                    plateau.attaqueInvalide();
                 }
                 
             }
