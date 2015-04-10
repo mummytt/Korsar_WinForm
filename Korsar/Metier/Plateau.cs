@@ -121,7 +121,7 @@ namespace Metier
             
         }
 
-        public void modifier_etapeSuivante()
+        public void charger_etapeSuivante()
         {
             _etape += 1;
 
@@ -374,7 +374,7 @@ namespace Metier
         }
         
 
-        public Dictionary<int, Carte> getCartesTapis(int etape)
+        public Dictionary<int, Carte> recuperer_cartesTapis(int etape)
         {
             if(etape == 1)
             {
@@ -416,7 +416,7 @@ namespace Metier
 
         }
 
-        public string recuperer_labelJoueur_carteTapis(int IDCarte)
+        public string recuperer_nomJoueur_carteTapis(int IDCarte)
         {
             Dictionary<int, int> attaques_joueurs = recuperer_attaquesJoueursSurCarte(IDCarte);
             if (attaques_joueurs == null)
@@ -729,7 +729,7 @@ namespace Metier
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("Exception dans getCouleurAttaquesJoueursCarte : " + e.ToString());
+                    Console.WriteLine("Exception dans recuperer_couleurAttaquesJoueurs_carte : " + e.ToString());
                     return "";
                 }
                 
