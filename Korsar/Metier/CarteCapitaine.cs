@@ -27,10 +27,10 @@ namespace Metier
             _couleur = couleur;
             _valeurAttaque = attaque;
             _imageCarte = image;
-            _imageCarteMin = imageMin;
+            _imageCarteMiniature = imageMin;
         }
 
-        public int getAttaque()
+        public int recuperer_attaque()
         {
             return _valeurAttaque;
         }

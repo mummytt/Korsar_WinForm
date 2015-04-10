@@ -26,10 +26,10 @@ namespace Metier
             _nomCarte = nom;
             _valeurOr = or;
             _imageCarte = image;
-            _imageCarteMin = imageMin;
+            _imageCarteMiniature = imageMin;
         }
 
-        public int getOr()
+        public int recuperer_or()
         {
             return _valeurOr;
         }

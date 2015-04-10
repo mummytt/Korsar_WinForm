@@ -21,8 +21,7 @@ namespace Metier
         private Dictionary<int, Carte> _cartesPiratesTapis_etape_2;
         private Dictionary<int, Carte> _cartesPiratesTapis_etape_3;
         private Dictionary<int, Carte> _cartesPiratesTapis_etape_4;
-
-
+        
         private Dictionary<Carte, Carte> _attaquesEnCours;
 
         private Dictionary<int, int> _idCartesMarchands_idJoueurs;
@@ -38,10 +37,10 @@ namespace Metier
         public Plateau(Joueur j1, Joueur j2, Joueur j3, Joueur j4)
         {
             _joueurs = new Dictionary<int, Joueur>();
-            j1.setID(1);
-            j2.setID(2); 
-            j3.setID(3); 
-            j4.setID(4);
+            j1.modifier_ID(1);
+            j2.modifier_ID(2); 
+            j3.modifier_ID(3); 
+            j4.modifier_ID(4);
 
             _joueurs.Add(1, j1);
             _joueurs.Add(2, j2);
@@ -68,33 +67,33 @@ namespace Metier
             _attaqueValide = false;
 
             _deck = new Deck();
-            _deck.melangerCartes();
+            _deck.melanger_cartes();
 
             _tour = 1;
             _etape = 1;
 
         }
 
-        public void setAjoutOrJoueur(int or, int idJoueur)
+        public void ajout_orJoueur(int or, int idJoueur)
         {
-            Joueur jonh = getJoueur(idJoueur);
-            jonh.setAjoutOr(or);
+            Joueur jonh = recuperer_joueur(idJoueur);
+            jonh.ajout_or(or);
         }
 
-        public int getOrJoueurCurrent()
+        public int recuperer_orJoueurCourant()
         {
-            Joueur jonh = getJoueurCurrent(); ;
+            Joueur jonh = recupererJoueurCourant(); ;
 
-            return jonh.getOr();
+            return jonh.recuperer_Or();
         }
 
 
-        public Dictionary<int, Joueur> getJoueurs()
+        public Dictionary<int, Joueur> recuperer_joueurs()
         {
             return _joueurs;
         }
 
-        public Joueur getJoueur(int id)
+        public Joueur recuperer_joueur(int id)
         {
             foreach (var joueur in _joueurs)
             {
@@ -108,7 +107,7 @@ namespace Metier
 
         }
 
-        public Joueur getJoueurCurrent()
+        public Joueur recupererJoueurCourant()
         {
             foreach(var joueur in _joueurs)
             {
@@ -122,7 +121,7 @@ namespace Metier
             
         }
 
-        public void setEtapeSuivante()
+        public void modifier_etapeSuivante()
         {
             _etape += 1;
 
@@ -132,14 +131,14 @@ namespace Metier
                 _tour += 1;
             }
 
-            setJoueurCurrentAPoserUneCarte(false);
-            setJoueurCurrentAPiocher(false);
+            modifier_aPoserUneCarte_joueurCourant(false);
+            modifier_aPiocher_joueurCourant(false);
 
             Dictionary<int, Carte> temp = new Dictionary<int, Carte>();
 
             foreach(var item in _cartesMarchandsTapis_etape_4)
             {
-                if(maitreDeLaCarte(item.Value.getIdCarte()) == -1)
+                if(maitreDeLaCarte(item.Value.recuperer_idCarte()) == -1)
                 {
                     temp.Add(item.Key, item.Value);
                 }
@@ -182,7 +181,7 @@ namespace Metier
 
                         foreach (var item3 in _idCartesPirates_idJoueurs)
                         {
-                            if (item2.Key.getIdCarte() == item3.Key)
+                            if (item2.Key.recuperer_idCarte() == item3.Key)
                             {
                                 KeyAttaqueSuppr2.Add(item3.Key, item3.Key);
                             }
@@ -208,13 +207,13 @@ namespace Metier
             foreach (var item in _cartesMarchandsTapis_etape_4)
             {
                 CarteMarchand carteM = (CarteMarchand)item.Value;
-                if(maitreDeLaCarte(item.Value.getIdCarte()) > 0)
+                if(maitreDeLaCarte(item.Value.recuperer_idCarte()) > 0)
                 {
-                    setAjoutOrJoueur(carteM.getOr(), maitreDeLaCarte(item.Value.getIdCarte()));
+                    ajout_orJoueur(carteM.recuperer_or(), maitreDeLaCarte(item.Value.recuperer_idCarte()));
                 }
-                else if (maitreDeLaCarte(item.Value.getIdCarte()) == 0)
+                else if (maitreDeLaCarte(item.Value.recuperer_idCarte()) == 0)
                 {
-                    setAjoutOrJoueur(carteM.getOr(), _etape);
+                    ajout_orJoueur(carteM.recuperer_or(), _etape);
                 }
                 
             }
@@ -242,93 +241,93 @@ namespace Metier
 
         }
 
-        public int getEtape()
+        public int recuperer_etape()
         {
             return _etape;
         }
 
-        public int getTour()
+        public int recuperer_tour()
         {
             return _tour;
         }
         
-        public string getNomJoueur(int idJoueur)
+        public string recuperer_nomJoueur(int idJoueur)
         {
-            return getJoueur(idJoueur).getNom();
+            return recuperer_joueur(idJoueur).recuperer_nom();
         }
 
-        public string getNomJoueurCurrent()
+        public string recuperer_nomJoueurCourant()
         {
-            return getJoueur(_etape).getNom();
+            return recuperer_joueur(_etape).recuperer_nom();
         }
 
-        public void setDonnerCarteAJoueur(int idJoueur)
+        public void donner_carteAJoueur(int idJoueur)
         {
-            Joueur jonh = getJoueur(idJoueur);
+            Joueur jonh = recuperer_joueur(idJoueur);
             Carte carte = _deck.piocher();
-            jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
+            jonh.ajouter_mainJoueur(_deck.recuperer_increment_deck() - 1, carte);
         }
 
         
-        public void setDonnerCarteAJoueurCurrent()
+        public void donner_carteAJoueurCourant()
         {
-            Joueur jonh = getJoueurCurrent();
+            Joueur jonh = recupererJoueurCourant();
             Carte carte = _deck.piocher();
-            jonh.ajouterMainJoueur(_deck.getIndex() - 1, carte);
+            jonh.ajouter_mainJoueur(_deck.recuperer_increment_deck() - 1, carte);
         }
 
-        public bool getVerifierGainMarchant(int idJoueur)
+        public bool verifier_gainMarchand(int idJoueur)
         {
             return false;
         }
 
         
 
-        public Dictionary<int, Carte> getMainJoueurCurrent()
+        public Dictionary<int, Carte> recuperer_mainJoueurCourant()
         {
             Dictionary<int, Carte> main = new Dictionary<int,Carte>();
-            Joueur jonh = getJoueurCurrent();
-            main = jonh.getMainJoueur();
+            Joueur jonh = recupererJoueurCourant();
+            main = jonh.recuperer_mainJoueur();
 
             return main;
         }
 
-        public int getNbCartesMainJoueurCurrent()
+        public int recuperer_nombreCartesMainJoueurCourant()
         {
             int nbCartes = 0;
-            Joueur jonh = getJoueurCurrent();
-            nbCartes = jonh.getNombreCartesEnMain();
+            Joueur jonh = recupererJoueurCourant();
+            nbCartes = jonh.recuperer_nombreCartesEnMain();
 
             return nbCartes;
         }
 
 
-        public bool getVerifAPiocherCurrent()
+        public bool verifier_APiocherCourant()
         {
-            Joueur jonh = getJoueur(_etape);
+            Joueur jonh = recuperer_joueur(_etape);
 
-            return jonh.getAPiocher();
+            return jonh.verifier_aPiocher();
         }
 
-        public bool getVerifAPoserUneCarteCurrent()
+        public bool verifier_aPoserUneCarteCourant()
         {
-            Joueur jonh = getJoueur(_etape);
+            Joueur jonh = recuperer_joueur(_etape);
 
-            return jonh.getAPoserUneCarte();
+            return jonh.recuperer_aPoserUneCarte();
         }
 
-        public Carte getCarteByID(int idCarte)
+        public Carte recuperer_carte_parID(int idCarte)
         {
-            return _deck.getCarteByID(idCarte);
+            return _deck.recuperer_carte_parID_deckBase(idCarte);
         }
 
 
-        public void poserUneCarte(Carte carte)
+        public void poser_carte(Carte carte)
         {
             if (carte.GetType() == typeof(CarteMarchand))
             {
                 _cartesMarchandsTapis_etape_1.Add(_cartesMarchandsTapis_etape_1.Count + 1, carte);
-                _idCartesMarchands_idJoueurs.Add(carte.getIdCarte(), _etape);
+                _idCartesMarchands_idJoueurs.Add(carte.recuperer_idCarte(), _etape);
                 _aPoserMarchand = true;
                 _estEnTrainDAttaquer = false;
             }
@@ -347,7 +346,7 @@ namespace Metier
                     if(_attaqueValide != true)
                     {
                         _cartesPiratesTapis_etape_1.Add(_cartesPiratesTapis_etape_1.Count + 1, carte);
-                        _idCartesPirates_idJoueurs.Add(carte.getIdCarte(), _etape);
+                        _idCartesPirates_idJoueurs.Add(carte.recuperer_idCarte(), _etape);
                         _estEnTrainDAttaquer = true;
                     }
                 }
@@ -356,20 +355,20 @@ namespace Metier
 
             if (_aPoserMarchand || _attaqueValide)
             {
-                Joueur jonh = getJoueurCurrent();
+                Joueur jonh = recupererJoueurCourant();
                 jonh.poserCarte(carte);
-                setJoueurCurrentAPoserUneCarte(true);
+                modifier_aPoserUneCarte_joueurCourant(true);
                 _aPoserMarchand = false;
                 _attaqueValide = false;
 
                 Dictionary<int, Carte> newCartesEnMain = new Dictionary<int, Carte>();
 
-                foreach (var carteMain in jonh.getMainJoueur())
+                foreach (var carteMain in jonh.recuperer_mainJoueur())
                 {
                     newCartesEnMain.Add(carteMain.Key, carteMain.Value);
                 }
 
-                jonh.setMainJoueur(newCartesEnMain);
+                jonh.modifier_mainJoueur(newCartesEnMain);
             }
             
         }
@@ -396,7 +395,7 @@ namespace Metier
             
         }
 
-        public void setCartesTapis(int etape, Dictionary<int, Carte> main)
+        public void modifier_cartesTapis(int etape, Dictionary<int, Carte> main)
         {
             if (etape == 1)
             {
@@ -417,13 +416,13 @@ namespace Metier
 
         }
 
-        public string getLabelJoueurCarteTapis(int IDCarte)
+        public string recuperer_labelJoueur_carteTapis(int IDCarte)
         {
-            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+            Dictionary<int, int> attaques_joueurs = recuperer_attaquesJoueursSurCarte(IDCarte);
             if (attaques_joueurs == null)
             {
                 var recup = _idCartesMarchands_idJoueurs.First(x => x.Key == IDCarte);
-                return getNomJoueur(recup.Value);
+                return recuperer_nomJoueur(recup.Value);
             }
 
             int verifEgalite = maitreDeLaCarte(IDCarte);
@@ -433,12 +432,12 @@ namespace Metier
                 return "Egalité";
             }
 
-            return getNomJoueur(verifEgalite);
+            return recuperer_nomJoueur(verifEgalite);
         }
 
-        public string getNomsEgalite(int IDCarte)
+        public string recuperer_nomsJoueurs_EgaliteAttaqueCarte(int IDCarte)
         {
-            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+            Dictionary<int, int> attaques_joueurs = recuperer_attaquesJoueursSurCarte(IDCarte);
 
             if (attaques_joueurs != null)
             {
@@ -488,43 +487,43 @@ namespace Metier
 
                 if (max_J1 == max_J2 && max_J1 > max_J3 && max_J1 > max_J4 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(2);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(2);
                 }
                 else if (max_J1 == max_J3 && max_J1 > max_J2 && max_J1 > max_J4 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(3);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(3);
                 }
                 else if (max_J1 == max_J4 && max_J1 > max_J2 && max_J1 > max_J3 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(4);
                 }
                 else if (max_J2 == max_J3 && max_J2 > max_J1 && max_J2 > max_J4 && max_J2 > 0)
                 {
-                    nom = getNomJoueur(2) + " - " + getNomJoueur(3);
+                    nom = recuperer_nomJoueur(2) + " - " + recuperer_nomJoueur(3);
                 }
                 else if (max_J3 == max_J4 && max_J3 > max_J2 && max_J3 > max_J1 && max_J3 > 0)
                 {
-                    nom = getNomJoueur(3) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(3) + " - " + recuperer_nomJoueur(4);
                 }
                 else if (max_J1 == max_J2 && max_J1 == max_J3 && max_J1 > max_J4 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(2) + " - " + recuperer_nomJoueur(3);
                 }
                 else if (max_J1 == max_J2 && max_J1 == max_J4 && max_J1 > max_J3 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(2) + " - " + recuperer_nomJoueur(4);
                 }
                 else if (max_J1 == max_J3 && max_J1 == max_J4 && max_J1 > max_J2 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(3) + " - " + recuperer_nomJoueur(4);
                 }
                 else if (max_J2 == max_J3 && max_J2 == max_J4 && max_J2 > max_J1 && max_J2 > 0)
                 {
-                    nom = getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(2) + " - " + recuperer_nomJoueur(3) + " - " + recuperer_nomJoueur(4);
                 }
                 else if (max_J1 == max_J2 && max_J1 == max_J3 && max_J1 == max_J4 && max_J1 > 0)
                 {
-                    nom = getNomJoueur(1) + " - " + getNomJoueur(2) + " - " + getNomJoueur(3) + " - " + getNomJoueur(4);
+                    nom = recuperer_nomJoueur(1) + " - " + recuperer_nomJoueur(2) + " - " + recuperer_nomJoueur(3) + " - " + recuperer_nomJoueur(4);
                 }
 
 
@@ -536,7 +535,7 @@ namespace Metier
 
         public int maitreDeLaCarte(int IDCarte)
         {
-            Dictionary<int, int> attaques_joueurs = getAttaquesJoueursCarte(IDCarte);
+            Dictionary<int, int> attaques_joueurs = recuperer_attaquesJoueursSurCarte(IDCarte);
 
             if(attaques_joueurs != null)
             {
@@ -609,10 +608,10 @@ namespace Metier
             return 0;
         }
 
-        public Dictionary<int, int> getAttaquesJoueursCarte(int IDCarte)
+        public Dictionary<int, int> recuperer_attaquesJoueursSurCarte(int IDCarte)
         {
             Dictionary<CartePirate, int> possesseurCartePirate = new Dictionary<CartePirate, int>();
-            var recupPirates = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
+            var recupPirates = _attaquesEnCours.Where(x => x.Value.recuperer_idCarte() == IDCarte);
             int attaque_J1 = 0;
             int attaque_J2 = 0;
             int attaque_J3 = 0;
@@ -620,7 +619,7 @@ namespace Metier
 
             foreach (var attaque in recupPirates)
             {
-                var recupAttaquant = _idCartesPirates_idJoueurs.First(x => x.Key == attaque.Key.getIdCarte());
+                var recupAttaquant = _idCartesPirates_idJoueurs.First(x => x.Key == attaque.Key.recuperer_idCarte());
                 possesseurCartePirate.Add((CartePirate)attaque.Key, recupAttaquant.Value);
             }
 
@@ -628,19 +627,19 @@ namespace Metier
             {
                 if(item.Value == 1)
                 {
-                    attaque_J1 += item.Key.getAttaque();
+                    attaque_J1 += item.Key.recuperer_attaque();
                 }
                 else if (item.Value == 2)
                 {
-                    attaque_J2 += item.Key.getAttaque();
+                    attaque_J2 += item.Key.recuperer_attaque();
                 }
                 else if (item.Value == 3)
                 {
-                    attaque_J3 += item.Key.getAttaque();
+                    attaque_J3 += item.Key.recuperer_attaque();
                 }
                 else
                 {
-                    attaque_J4 += item.Key.getAttaque();
+                    attaque_J4 += item.Key.recuperer_attaque();
                 }
             }
 
@@ -657,21 +656,21 @@ namespace Metier
             return null;
         }
 
-        public void setJoueurCurrentAPiocher(bool value)
+        public void modifier_aPiocher_joueurCourant(bool value)
         {
-            Joueur jonh = getJoueurCurrent();
-            jonh.setAPiocher(value);
+            Joueur jonh = recupererJoueurCourant();
+            jonh.modifier_aPiocher(value);
         }
 
-        public void setJoueurCurrentAPoserUneCarte(bool value)
+        public void modifier_aPoserUneCarte_joueurCourant(bool value)
         {
-            Joueur jonh = getJoueurCurrent();
-            jonh.setAPoserUneCarte(value);
+            Joueur jonh = recupererJoueurCourant();
+            jonh.modifier_aPoserUneCarte(value);
         }
 
-        public bool getPeutPiocher_Pioche()
+        public bool recuperer_piochePossible()
         {
-            if(_deck.getNombreCartes() != 0)
+            if(_deck.recuperer_nombre_cartes_deckPioche() != 0)
             {
                 return true;
             }
@@ -679,50 +678,50 @@ namespace Metier
             return false;
         }
 
-        public bool getEstEnTrainDattaquer()
+        public bool recuperer_estEnTrainDattaquer()
         {
             return _estEnTrainDAttaquer;
         }
 
 
-        public void setEstEnTrainDattaquer(bool value)
+        public void modifier_estEnTrainDattaquer(bool value)
         {
             _estEnTrainDAttaquer = value;
         }
 
 
-        public void setAPoserMarchand(bool value)
+        public void modifier_aPoserMarchand(bool value)
         {
             _aPoserMarchand = value;
         }
 
-        public void ajoutAttaque(Carte cartePirate, Carte carteMarchand)
+        public void ajout_attaque(Carte cartePirate, Carte carteMarchand)
         {
             _attaquesEnCours.Add(cartePirate, carteMarchand);
         }
 
-        public void setAttaqueValide(bool value)
+        public void modifier_attaqueValide(bool value)
         {
             _attaqueValide = value;
         }
 
-        public string getCouleurAttaquesJoueursCarte(int IDCarte, int idJoueur)
+        public string recuperer_couleurAttaquesJoueurs_carte(int IDCarte, int idJoueur)
         {
             if(_idCartesPirates_idJoueurs.Count != 0)
             {
                 try
                 {
                     var temp = _idCartesPirates_idJoueurs.Where(x => x.Value == idJoueur);
-                    var temp2 = _attaquesEnCours.Where(x => x.Value.getIdCarte() == IDCarte);
+                    var temp2 = _attaquesEnCours.Where(x => x.Value.recuperer_idCarte() == IDCarte);
 
                     foreach(var item1 in temp)
                     {
                         foreach (var item2 in temp2)
                         {
-                            if (item2.Key.getIdCarte() == item1.Key)
+                            if (item2.Key.recuperer_idCarte() == item1.Key)
                             {
                                 CartePirate carte = (CartePirate)item2.Key;
-                                return carte.getCouleur();
+                                return carte.recuperer_couleur();
                             }
                         }
                     }
@@ -740,7 +739,7 @@ namespace Metier
             return "";
         }
 
-        public bool verifAttaqueValide(string couleur, int IDCarte)
+        public bool verifier_attaqueValide(string couleur, int IDCarte)
         {
             string couleurEnCours = "";
             string color_2 = "";
@@ -749,31 +748,31 @@ namespace Metier
 
             if(_etape == 1)
             {
-                couleurEnCours = getCouleurAttaquesJoueursCarte(IDCarte, 1);
-                color_2 = getCouleurAttaquesJoueursCarte(IDCarte, 2);
-                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 3);
-                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 4);
+                couleurEnCours = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 1);
+                color_2 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 2);
+                color_3 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 3);
+                color_4 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 4);
             }
             else if (_etape == 2)
             {
-                couleurEnCours = getCouleurAttaquesJoueursCarte(IDCarte, 2);
-                color_2 = getCouleurAttaquesJoueursCarte(IDCarte, 1);
-                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 3);
-                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 4);
+                couleurEnCours = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 2);
+                color_2 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 1);
+                color_3 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 3);
+                color_4 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 4);
             }
             else if (_etape == 3)
             {
-                couleurEnCours = getCouleurAttaquesJoueursCarte(IDCarte, 3);
-                color_2 = getCouleurAttaquesJoueursCarte(IDCarte, 1);
-                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 2);
-                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 4);
+                couleurEnCours = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 3);
+                color_2 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 1);
+                color_3 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 2);
+                color_4 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 4);
             }
             else
             {
-                couleurEnCours = getCouleurAttaquesJoueursCarte(IDCarte, 4);
-                color_2 = getCouleurAttaquesJoueursCarte(IDCarte, 1);
-                color_3 = getCouleurAttaquesJoueursCarte(IDCarte, 2);
-                color_4 = getCouleurAttaquesJoueursCarte(IDCarte, 3);
+                couleurEnCours = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 4);
+                color_2 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 1);
+                color_3 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 2);
+                color_4 = recuperer_couleurAttaquesJoueurs_carte(IDCarte, 3);
             }
 
             if (couleurEnCours == couleur && couleurEnCours != color_2 && couleurEnCours != color_3 && couleurEnCours != color_4)
@@ -785,7 +784,7 @@ namespace Metier
             return false;
         }
 
-        public Carte getPirateEnCours()
+        public Carte recuperer_pirateEnCours()
         {
             if (_cartesPiratesTapis_etape_1.Count != 0)
             {
@@ -799,7 +798,7 @@ namespace Metier
             return null;
         }
 
-        public void setAttaqueInvalide()
+        public void modifier_AttaqueInvalide()
         {
             if (_cartesPiratesTapis_etape_1.Count != 0)
             {
@@ -807,7 +806,7 @@ namespace Metier
 
                 _cartesPiratesTapis_etape_1.Remove(temp.Key);
                 _attaquesEnCours.Remove(temp.Value);
-                _idCartesPirates_idJoueurs.Remove(temp.Value.getIdCarte());
+                _idCartesPirates_idJoueurs.Remove(temp.Value.recuperer_idCarte());
                 _estEnTrainDAttaquer = false;
                 _attaqueValide = false;
             }

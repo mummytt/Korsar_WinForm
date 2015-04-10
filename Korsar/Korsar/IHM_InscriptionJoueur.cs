@@ -35,7 +35,7 @@ namespace Korsar
 
             string error = "Le nom n'est pas conforme";
 
-            if(!j1.verifNomJoueur(nj1))
+            if(!j1.verifier_nomJoueur(nj1))
             {
                 l_error1.Text = error;
                 jeton = true;
@@ -45,7 +45,7 @@ namespace Korsar
                 l_error1.Text = "";
             }
             
-            if (!j2.verifNomJoueur(nj2))
+            if (!j2.verifier_nomJoueur(nj2))
             {
                 l_error2.Text = error;
                 jeton = true;
@@ -55,7 +55,7 @@ namespace Korsar
                 l_error2.Text = "";
             }
                 
-            if (!j3.verifNomJoueur(nj3))
+            if (!j3.verifier_nomJoueur(nj3))
             {
                 l_error3.Text = error;
             }
@@ -64,7 +64,7 @@ namespace Korsar
                 l_error3.Text = "";
             }
                 
-            if (!j4.verifNomJoueur(nj4))
+            if (!j4.verifier_nomJoueur(nj4))
             {
                 l_error4.Text = error;
                 jeton = true;

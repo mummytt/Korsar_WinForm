@@ -10,7 +10,7 @@ namespace Metier
     {
         private int _id;
         private string _nom;
-        private int _nbCartesEnMain;
+        private int _nombreCartesEnMain;
         private int _or;
         private bool _aPiocher;
         private bool _aPoserUneCarte;
@@ -20,7 +20,7 @@ namespace Metier
         {
             _id = 0;
             _nom = "";
-            _nbCartesEnMain = 0;
+            _nombreCartesEnMain = 0;
             _or = 0;
             _cartesEnMain = new Dictionary<int, Carte>();
             _aPiocher = false;
@@ -31,73 +31,71 @@ namespace Metier
         {
             _id = id;
             _nom = nom;
-            _nbCartesEnMain = 0;
+            _nombreCartesEnMain = 0;
             _or = 0;
             _cartesEnMain = new Dictionary<int, Carte>();
             _aPiocher = false;
             _aPoserUneCarte = false;
         }
 
-        public int getOr()
+        public int recuperer_Or()
         {
             CartePirate e = new CartePirate();
             
             return _or;
         }
         
-        public int getID()
+        public int recuperer_ID()
         {
             return _id;
         }
 
-        public void setID(int id)
+        public void modifier_ID(int id)
         {
             _id = id;
         }
 
-        public void setAjoutOr(int or)
+        public void ajout_or(int or)
         {
             _or += or;
         }
 
-        public string getNom()
+        public string recuperer_nom()
         {
             return _nom;
         }
 
-        public Dictionary<int, Carte> getMainJoueur()
+        public Dictionary<int, Carte> recuperer_mainJoueur()
         {
             return _cartesEnMain;
         }
 
-        public void setMainJoueur(Dictionary<int, Carte> main)
+        public void modifier_mainJoueur(Dictionary<int, Carte> main)
         {
             _cartesEnMain = main;
         }
 
-        public void ajouterMainJoueur(int index, Carte carte)
+        public void ajouter_mainJoueur(int index, Carte carte)
         {
             _cartesEnMain.Add(index, carte);
-            _nbCartesEnMain += 1;
+            _nombreCartesEnMain += 1;
         }
 
         public void poserCarte(Carte carte)
         {
-            _nbCartesEnMain -= 1;
+            _nombreCartesEnMain -= 1;
 
-            var recup = _cartesEnMain.First(x => x.Value.getIdCarte() == carte.getIdCarte());
+            var recup = _cartesEnMain.First(x => x.Value.recuperer_idCarte() == carte.recuperer_idCarte());
             _cartesEnMain.Remove(recup.Key);
         }
-
         
-
-        public int getNombreCartesEnMain()
+        public int recuperer_nombreCartesEnMain()
         {
-            return _nbCartesEnMain;
+            return _nombreCartesEnMain;
         }
 
 
-        public bool verifNomJoueur(string nom)
+        public bool verifier_nomJoueur(string nom)
         {
 
             if (nom.Length < 20 && nom.Length>0)
@@ -109,22 +107,22 @@ namespace Metier
             return false;
         }
 
-        public bool getAPiocher()
+        public bool verifier_aPiocher()
         {
             return _aPiocher;
         }
 
-        public void setAPiocher(bool value)
+        public void modifier_aPiocher(bool value)
         {
             _aPiocher = value;
         }
 
-        public bool getAPoserUneCarte()
+        public bool recuperer_aPoserUneCarte()
         {
             return _aPoserUneCarte;
         }
 
-        public void setAPoserUneCarte(bool value)
+        public void modifier_aPoserUneCarte(bool value)
         {
             _aPoserUneCarte = value;
         }

@@ -13,7 +13,7 @@ namespace Metier
         protected string _couleur;
         protected  string _nomCarte;
         protected Bitmap _imageCarte;
-        protected Bitmap _imageCarteMin;
+        protected Bitmap _imageCarteMiniature;
 
         public Carte()
         {
@@ -21,7 +21,7 @@ namespace Metier
             _couleur = "";
             _nomCarte = "";
             _imageCarte = null;
-            _imageCarteMin = null;
+            _imageCarteMiniature = null;
         }
 
         public Carte(int id, string couleur, string nom, Bitmap image, Bitmap imageMin)
@@ -30,26 +30,26 @@ namespace Metier
             _couleur = couleur;
             _nomCarte = nom;
             _imageCarte = image;
-            _imageCarteMin = imageMin;
+            _imageCarteMiniature = imageMin;
         }
 
-        public int getIdCarte()
+        public int recuperer_idCarte()
         {
             return _idCarte;
         }
 
-        public string afficherNomCarte()
+        public string afficher_nomCarte()
         {
             return _nomCarte;
         }
 
-        public Bitmap getImageCarte()
+        public Bitmap recuperer_imageCarte()
         {
             return _imageCarte;
         }
-        public Bitmap getImageMinCarte()
+        public Bitmap recuperer_imageMiniatureCarte()
         {
-            return _imageCarteMin;
+            return _imageCarteMiniature;
         }
 
     }
