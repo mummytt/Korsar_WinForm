@@ -63,6 +63,16 @@ namespace Korsar.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap attaque_amiral {
+            get {
+                object obj = ResourceManager.GetObject("attaque_amiral", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap attaque_bleu {
             get {
                 object obj = ResourceManager.GetObject("attaque_bleu", resourceCulture);

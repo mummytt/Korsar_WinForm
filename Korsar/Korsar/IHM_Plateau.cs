@@ -284,6 +284,11 @@ namespace Korsar
                                             lAttaque[j].Image = Properties.Resources.attaque_jaune;
                                         }
                                     }
+                                    else if (couleur == "blanc")
+                                    {
+                                            lAttaque[j].Image = Properties.Resources.attaque_amiral;
+                                            lAttaque[j].Text = "";
+                                    }
 
                                 }
                                 j++;
@@ -630,8 +635,7 @@ namespace Korsar
                         }
                         
                     }
-
-                    if (attaque.afficher_nomCarte().Contains("capitaine"))
+                    else if (attaque.afficher_nomCarte().Contains("capitaine"))
                     {
                         CarteCapitaine attaquantCapitaine = (CarteCapitaine)attaque;
                         plateau.ajouter_attaque(attaquantCapitaine, marchandAttaque);
@@ -639,6 +643,17 @@ namespace Korsar
                         if (plateau.verifier_attaqueValide(attaquantCapitaine.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
                         {
                             plateau.poser_carte(attaquantCapitaine);
+                        }
+
+                    }
+                    else if (attaque.afficher_nomCarte().Contains("amiral"))
+                    {
+                        CarteAmiral attaquantAmiral = (CarteAmiral)attaque;
+                        plateau.ajouter_attaque(attaquantAmiral, marchandAttaque);
+
+                        if (plateau.verifier_attaqueValide(attaquantAmiral.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
+                        {
+                            plateau.poser_carte(attaquantAmiral);
                         }
 
                     }

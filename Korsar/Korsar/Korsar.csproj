@@ -97,6 +97,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ressources\attaque_amiral.bmp" />
     <Content Include="Ressources\attaque_bleu.bmp" />
     <Content Include="Ressources\attaque_capitaine_bleu.bmp" />
     <Content Include="Ressources\attaque_capitaine_jaune.bmp" />
