@@ -73,6 +73,46 @@ namespace Korsar.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap attaque_capitaine_bleu {
+            get {
+                object obj = ResourceManager.GetObject("attaque_capitaine_bleu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap attaque_capitaine_jaune {
+            get {
+                object obj = ResourceManager.GetObject("attaque_capitaine_jaune", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap attaque_capitaine_rouge {
+            get {
+                object obj = ResourceManager.GetObject("attaque_capitaine_rouge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap attaque_capitaine_vert {
+            get {
+                object obj = ResourceManager.GetObject("attaque_capitaine_vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap attaque_jaune {
             get {
                 object obj = ResourceManager.GetObject("attaque_jaune", resourceCulture);

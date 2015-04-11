@@ -34,5 +34,10 @@ namespace Metier
         {
             return _valeurAttaque;
         }
+
+        public string recuperer_couleur()
+        {
+            return _couleur;
+        }
     }
 }

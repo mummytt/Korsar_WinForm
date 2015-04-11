@@ -98,6 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ressources\attaque_bleu.bmp" />
+    <Content Include="Ressources\attaque_capitaine_bleu.bmp" />
+    <Content Include="Ressources\attaque_capitaine_jaune.bmp" />
+    <Content Include="Ressources\attaque_capitaine_rouge.bmp" />
+    <Content Include="Ressources\attaque_capitaine_vert.bmp" />
     <Content Include="Ressources\attaque_jaune.bmp" />
     <Content Include="Ressources\attaque_rouge.bmp" />
     <Content Include="Ressources\attaque_vert.bmp" />

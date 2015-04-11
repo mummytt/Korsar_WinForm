@@ -165,7 +165,7 @@ namespace Korsar
 
                     Label labelJoueur = new Label();
                     labelJoueur.Text = plateau.recuperer_nomJoueur_carteTapis(carte.Value.recuperer_idCarte());
-                    labelJoueur.Size = new Size(labelJoueur.Text.Length * 6 + 5, 13);
+                    labelJoueur.Size = new Size(labelJoueur.Text.Length * 10 + 5, 13);
 
                     if (x >= 3)
                     {
@@ -238,19 +238,51 @@ namespace Korsar
 
                                     if (couleur == "rouge")
                                     {
-                                        lAttaque[j].Image = Properties.Resources.attaque_rouge;
+                                        if (attaque.Value >= 50)
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_capitaine_rouge;
+                                            lAttaque[j].Text = "";
+                                        }
+                                        else
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_rouge;
+                                        }
                                     }
                                     else if (couleur == "bleu")
                                     {
-                                        lAttaque[j].Image = Properties.Resources.attaque_bleu;
+                                        if (attaque.Value >= 50)
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_capitaine_bleu;
+                                            lAttaque[j].Text = "";
+                                        }
+                                        else
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_bleu;
+                                        }
                                     }
                                     else if (couleur == "vert")
                                     {
-                                        lAttaque[j].Image = Properties.Resources.attaque_vert;
+                                        if (attaque.Value >= 50)
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_capitaine_vert;
+                                            lAttaque[j].Text = "";
+                                        }
+                                        else
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_vert;
+                                        }
                                     }
                                     else if (couleur == "jaune")
                                     {
-                                        lAttaque[j].Image = Properties.Resources.attaque_jaune;
+                                        if (attaque.Value >= 50)
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_capitaine_jaune;
+                                            lAttaque[j].Text = "";
+                                        }
+                                        else
+                                        {
+                                            lAttaque[j].Image = Properties.Resources.attaque_jaune;
+                                        }
                                     }
 
                                 }
@@ -522,6 +554,7 @@ namespace Korsar
 
         private void b_etape_Click(object sender, EventArgs e)
         {
+
             if (plateau.verifier_APiocherCourant() == true || plateau.verifier_aPoserUneCarteCourant() == true)
             {
                 if(plateau.recuperer_estEnTrainDattaquer() == false)
@@ -581,60 +614,78 @@ namespace Korsar
             {
                 PictureBox pb = (PictureBox)sender;
                 Carte marchandAttaque = plateau.recuperer_carte_parID((int)pb.Tag);
-                CartePirate attaquant = (CartePirate)plateau.recuperer_pirateEnCours();
+                Carte attaque = plateau.recuperer_attaquesEnCours();
 
-                plateau.ajouter_attaque(attaquant, marchandAttaque);
-
-                if(plateau.verifier_attaqueValide(attaquant.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
+                if (attaque != null)
                 {
-                    plateau.modifier_estEnTrainDattaquer(false);
-                    plateau.poser_carte(attaquant);
-                    plateau.modifier_attaqueValide(false);
-
-                    var mainJoueur_1 = plateau.recuperer_cartesTapis(1);
-                    int maitre = plateau.maitreDeLaCarte((int)pb.Tag);
-
-                    string noms = plateau.recuperer_nomsJoueurs_EgaliteAttaqueCarte(marchandAttaque.recuperer_idCarte());
-
-                    if (maitre == plateau.recuperer_etape() || noms.Contains(plateau.recuperer_nomJoueurCourant()) == true)
+                    if(attaque.afficher_nomCarte().Contains("pirate"))
                     {
-                        if (pb.Name == "etape_2")
-                        {
-                            var mainJoueur_2 = plateau.recuperer_cartesTapis(2);
-                            var recup = mainJoueur_2.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
-                            mainJoueur_2.Remove(recup.Key);
-                            mainJoueur_1.Add(recup.Key, recup.Value);
-                            plateau.modifier_cartesTapis(2, mainJoueur_2);
-                            plateau.modifier_cartesTapis(1, mainJoueur_1);
+                        CartePirate attaquantPirate = (CartePirate)attaque;
 
-                        }
-                        else if (pb.Name == "etape_3")
+                        plateau.ajouter_attaque(attaquantPirate, marchandAttaque);
+
+                        if (plateau.verifier_attaqueValide(attaquantPirate.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
                         {
-                            var mainJoueur_3 = plateau.recuperer_cartesTapis(3);
-                            var recup = mainJoueur_3.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
-                            mainJoueur_3.Remove(recup.Key);
-                            mainJoueur_1.Add(recup.Key, recup.Value);
-                            plateau.modifier_cartesTapis(3, mainJoueur_3);
-                            plateau.modifier_cartesTapis(1, mainJoueur_1);
+                            plateau.poser_carte(attaquantPirate);
                         }
-                        else if (pb.Name == "etape_4")
-                        {
-                            var mainJoueur_4 = plateau.recuperer_cartesTapis(4);
-                            var recup = mainJoueur_4.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
-                            mainJoueur_4.Remove(recup.Key);
-                            mainJoueur_1.Add(recup.Key, recup.Value);
-                            plateau.modifier_cartesTapis(4, mainJoueur_4);
-                            plateau.modifier_cartesTapis(1, mainJoueur_1);
-                        }
+                        
                     }
 
-                    nettoyerPlateau();
-                    chargementPlateau();
+                    if (attaque.afficher_nomCarte().Contains("capitaine"))
+                    {
+                        CarteCapitaine attaquantCapitaine = (CarteCapitaine)attaque;
+                        plateau.ajouter_attaque(attaquantCapitaine, marchandAttaque);
+
+                        if (plateau.verifier_attaqueValide(attaquantCapitaine.recuperer_couleur(), marchandAttaque.recuperer_idCarte()))
+                        {
+                            plateau.poser_carte(attaquantCapitaine);
+                        }
+
+                    }
                 }
-                else
+
+
+                plateau.modifier_estEnTrainDattaquer(false);
+                plateau.modifier_attaqueValide(false);
+
+                var mainJoueur_1 = plateau.recuperer_cartesTapis(1);
+                int maitre = plateau.maitreDeLaCarte((int)pb.Tag);
+
+                string noms = plateau.recuperer_nomsJoueurs_EgaliteAttaqueCarte(marchandAttaque.recuperer_idCarte());
+
+                if (maitre == plateau.recuperer_etape() || noms.Contains(plateau.recuperer_nomJoueurCourant()) == true)
                 {
-                    plateau.attaqueInvalide();
+                    if (pb.Name == "etape_2")
+                    {
+                        var mainJoueur_2 = plateau.recuperer_cartesTapis(2);
+                        var recup = mainJoueur_2.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
+                        mainJoueur_2.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key, recup.Value);
+                        plateau.modifier_cartesTapis(2, mainJoueur_2);
+                        plateau.modifier_cartesTapis(1, mainJoueur_1);
+                    }
+                    else if (pb.Name == "etape_3")
+                    {
+                        var mainJoueur_3 = plateau.recuperer_cartesTapis(3);
+                        var recup = mainJoueur_3.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
+                        mainJoueur_3.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key + 2, recup.Value);
+                        plateau.modifier_cartesTapis(3, mainJoueur_3);
+                        plateau.modifier_cartesTapis(1, mainJoueur_1);
+                    }
+                    else if (pb.Name == "etape_4")
+                    {
+                        var mainJoueur_4 = plateau.recuperer_cartesTapis(4);
+                        var recup = mainJoueur_4.First(x => x.Value.recuperer_idCarte() == (int)pb.Tag);
+                        mainJoueur_4.Remove(recup.Key);
+                        mainJoueur_1.Add(recup.Key, recup.Value);
+                        plateau.modifier_cartesTapis(4 + 4, mainJoueur_4);
+                        plateau.modifier_cartesTapis(1, mainJoueur_1);
+                    }
                 }
+
+                nettoyerPlateau();
+                chargementPlateau();
                 
             }
             
