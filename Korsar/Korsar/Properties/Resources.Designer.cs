@@ -163,6 +163,16 @@ namespace Korsar.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gagne {
+            get {
+                object obj = ResourceManager.GetObject("gagne", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap joueur {
             get {
                 object obj = ResourceManager.GetObject("joueur", resourceCulture);

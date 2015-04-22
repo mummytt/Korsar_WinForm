@@ -15,7 +15,7 @@ namespace Metier
         private bool _aPiocher;
         private bool _aPoserUneCarte;
         private Dictionary<int, Carte> _cartesEnMain;
-        
+
         public Joueur()
         {
             _id = 0;
@@ -41,10 +41,10 @@ namespace Metier
         public int recuperer_Or()
         {
             CartePirate e = new CartePirate();
-            
+
             return _or;
         }
-        
+
         public int recuperer_ID()
         {
             return _id;
@@ -123,12 +123,6 @@ namespace Metier
             var recup = _cartesEnMain.First(x => x.Value.recuperer_idCarte() == carte.recuperer_idCarte());
             _cartesEnMain.Remove(recup.Key);
         }
-        
-
-
-        
-
-        
 
     }
 }
