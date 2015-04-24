@@ -14,8 +14,8 @@ namespace Korsar
     public partial class IHM_Plateau : Form
     {
         Plateau plateau;
-        int _margeGauche_apparitionCarteMain = 200;
-        int _margeHaut_apparitionCarteMain = 650;
+        int _margeGauche_apparitionCarteMain = 250;
+        int _margeHaut_apparitionCarteMain = 600;
         int _tailleCarte_largeur = 92;
         int _tailleCarte_hauteur = 135;
         int _tailleCarteMiniature_largeur = 28;
@@ -96,71 +96,6 @@ namespace Korsar
             plateau.donner_carteAJoueur(4);
             plateau.donner_carteAJoueur(4);
             plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-
-
-            //-----------------------------------------TEST------------------------------------------------
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-            plateau.donner_carteAJoueur(1);
-
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-            plateau.donner_carteAJoueur(2);
-
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-            plateau.donner_carteAJoueur(4);
-
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
-            plateau.donner_carteAJoueur(3);
             plateau.donner_carteAJoueur(4);
             plateau.donner_carteAJoueur(4);
             plateau.donner_carteAJoueur(4);
