@@ -116,7 +116,7 @@ namespace Korsar
                 pb.Tag = item.recuperer_idCarte();
                 pb.Click += new System.EventHandler(pb_carteMain_Click);
 
-                if (nbCarteMainJoueur <= 9)
+                if (nbCarteMainJoueur <= 7)
                 {
                     pb.Image = item.recuperer_imageCarte();
                     _espacementActuel_cartes += _espacement_cartes;
@@ -579,7 +579,7 @@ namespace Korsar
                     }
                 }
 
-                if (jeton != true || plateau.verifier_APiocherCourant() == true || plateau.verifier_aPoserUneCarteCourant() == true)
+                if (plateau.verifier_APiocherCourant() == true || plateau.verifier_aPoserUneCarteCourant() == true || (plateau.recuperer_piochePossible() == false && jeton != true))
                 {
                     if (plateau.recuperer_estEnTrainDattaquer() == false)
                     {
