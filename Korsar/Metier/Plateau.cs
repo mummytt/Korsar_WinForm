@@ -844,6 +844,27 @@ namespace Metier
                 _tour += 1;
             }
 
+            if (_attaqueValide == false)
+            {
+                if (_estEnTrainDAttaquer == true && _attaqueActuel.Count != 0)
+                {
+                    var attaque = _attaqueActuel.First(x => x.Key == _attaqueActuel.Count);
+
+                    if (attaque.Value.afficher_nomCarte().Contains("pirate"))
+                    {
+                        _idCartesPirates_idJoueurs.Remove(attaque.Value.recuperer_idCarte());
+                    }
+                    else if (attaque.Value.afficher_nomCarte().Contains("capitaine"))
+                    {
+                        _idCartesCapitaines_idJoueurs.Remove(attaque.Value.recuperer_idCarte());
+                    }
+                    else if (attaque.Value.afficher_nomCarte().Contains("amiral"))
+                    {
+                        _idCarteAmiral_idJoueur.Remove(attaque.Value.recuperer_idCarte());
+                    }
+                }
+            }
+
             modifier_aPoserUneCarte_joueurCourant(false);
             modifier_aPiocher_joueurCourant(false);
 

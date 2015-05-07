@@ -602,6 +602,7 @@ namespace Korsar
                     this.nettoyerPlateau();
                     this.chargementPlateau();
                     plateau.modifier_aPiocher_joueurCourant(true);
+                    plateau.modifier_estEnTrainDattaquer(false);
                 }
             }
         }
